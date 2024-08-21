@@ -1,6 +1,5 @@
 import React from "react";
 import "./services.css";
-import { BiCheck } from "react-icons/bi";
 import { BsPatchCheckFill } from "react-icons/bs";
 
 const Services = () => {
