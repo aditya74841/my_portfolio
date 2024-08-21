@@ -43,7 +43,7 @@ const Experience = () => {
             <article className="experience__details">
               <BsPatchCheckFill className=" experience__details-icon" />
               <div>
-                <a href="https://codencreative.com/" target="_blank">
+                <a href="https://codencreative.com/" target="_blank" rel="noreferrer">
                   <h4>CodenCreative</h4>
                 </a>
 
@@ -57,7 +57,7 @@ const Experience = () => {
             <article className="experience__details">
               <BsPatchCheckFill className=" experience__details-icon" />
               <div>
-                <a href="#" target="_blank">
+                <a href="https://www.linkedin.com/company/black-water-coffee-company-limited/about/" target="_blank" rel="noreferrer">
                   <h4>Black Water Coffee Pvt Ltd.</h4>
                 </a>
 
@@ -70,7 +70,7 @@ const Experience = () => {
             <article className="experience__details">
               <BsPatchCheckFill className=" experience__details-icon" />
               <div>
-                <a href="https://codencreative.com/" target="_blank">
+                <a href="https://codencreative.com/" target="_blank" rel="noreferrer">
                   <h4>CodenCreative</h4>
                 </a>
 

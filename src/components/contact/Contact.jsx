@@ -1,7 +1,6 @@
 import React from 'react'
 import './contact.css'
 import { MdOutlineEmail } from 'react-icons/md'
-import { RiMessengerLine } from 'react-icons/ri'
 import { BsWhatsapp } from 'react-icons/bs'
 import  { useRef } from 'react';
 import emailjs from 'emailjs-com'
@@ -31,12 +30,12 @@ const Contact = () => {
                         <h5>aditya74810@gmail.com</h5>
                         <a href="mailto:aditya74810@gmail.com" target='_blank' rel="noreferrer"> Click to Send a message</a>
                     </article>
-                    <article className='contact__option'>
+                    {/* <article className='contact__option'>
                         <RiMessengerLine className='contact__option-icon ml-auto mr-auto' />
                         <h4>Messenger</h4>
                         <h5>Aditya Ranjan</h5>
                         <a href="#" target='_blank' rel="noreferrer">  Click to Send a message</a>
-                    </article>
+                    </article> */}
                     <article className='contact__option'>
                         <BsWhatsapp className='contact__option-icon ml-auto mr-auto' />
                         <h4>Whatsapp</h4>

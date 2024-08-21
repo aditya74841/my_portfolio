@@ -93,9 +93,7 @@
 
 import React from "react";
 import "./portfolio.css";
-import { MdOutlineEmail } from "react-icons/md";
-import { RiMessengerLine } from "react-icons/ri";
-import { BsWhatsapp } from "react-icons/bs";
+
 
 import IMG1 from "../../assets/Ecommerce_Frontend.png";
 import IMG2 from "../../assets/google_keep.jpg";
