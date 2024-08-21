@@ -94,7 +94,6 @@
 import React from "react";
 import "./portfolio.css";
 
-
 import IMG1 from "../../assets/Ecommerce_Frontend.png";
 import IMG2 from "../../assets/google_keep.jpg";
 import IMG3 from "../../assets/to-do.png";
@@ -104,31 +103,31 @@ import IMG6 from "../../assets/whatsapp.png";
 
 const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
   <article className="portfolio__item w-full h-full">
-    <div className="portfolio__item-image w-full h-1/2">
-      <img src={imgSrc} alt={title}  className="w-full h-full"/>
+    <div className="portfolio__item-image w-full h-4/6">
+      <img src={imgSrc} alt={title} className="w-full h-full" />
     </div>
-    <div className=" mt-auto">
-    <h3 className="mt-auto">{title}</h3>
-    
-    <div className="portfolio__item-cta ">
-      <a
-        href={githubLink}
-        className="btn"
-        target="_blank"
-        rel="noreferrer"
-        style={{}}
-      >
-        GitHub
-      </a>
-      <a
-        href={liveDemoLink}
-        className=" btn btn-primary"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Live Demo
-      </a>
-    </div>
+    <div className="mt-12">
+      <h3 className="mt-auto">{title}</h3>
+
+      <div className="portfolio__item-cta ">
+        <a
+          href={githubLink}
+          className="btn"
+          target="_blank"
+          rel="noreferrer"
+          style={{}}
+        >
+          GitHub
+        </a>
+        <a
+          href={liveDemoLink}
+          className=" btn btn-primary"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Live Demo
+        </a>
+      </div>
     </div>
   </article>
 );
