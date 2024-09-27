@@ -102,31 +102,35 @@ import IMG5 from "../../assets/takememories.jpg";
 import IMG6 from "../../assets/whatsapp.png";
 
 const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
-  <article className="portfolio__item w-full h-full">
-    <div className="portfolio__item-image w-full h-4/6">
-      <img src={imgSrc} alt={title} className="w-full h-full" />
+  <article className="portfolio__item h-full ">
+    <div className="portfolio__item-image bg-red-600 h-1/2">
+      <img src={imgSrc} alt={title} className="" />
     </div>
-    <div className="mt-12">
-      <h3 className="mt-auto">{title}</h3>
+    <div className="mt-16">
+      <div className=" h-1/2 ">
+        <h3 className="">{title}</h3>
 
-      <div className="portfolio__item-cta ">
-        <a
-          href={githubLink}
-          className="btn"
-          target="_blank"
-          rel="noreferrer"
-          style={{}}
-        >
-          GitHub
-        </a>
-        <a
-          href={liveDemoLink}
-          className=" btn btn-primary"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Live Demo
-        </a>
+        <div className="portfolio__item-cta ">
+          <a
+            href={githubLink}
+            className="btn"
+            target="_blank"
+            rel="noreferrer"
+            style={{}}
+          >
+            GitHub
+          </a>
+          {liveDemoLink && (
+            <a
+              href={liveDemoLink}
+              className=" btn btn-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Live Demo
+            </a>
+          )}
+        </div>
       </div>
     </div>
   </article>
@@ -169,15 +173,15 @@ const Portfolio = () => {
 
         <PortfolioItem
           imgSrc={IMG5}
-          title="Take Memories"
-          githubLink="https://github.com/aditya74841/"
-          // liveDemoLink="https://github.com/aditya74841/"
+          title="Music Portfolio"
+          githubLink="https://github.com/aditya74841/music_portfolio"
+          liveDemoLink="https://music-portfolio-gamma.vercel.app/"
         />
 
         <PortfolioItem
           imgSrc={IMG6}
           title="WhatsApp Clone"
-          githubLink="https://github.com/aditya74841/"
+          githubLink="https://github.com/aditya74841/whatsapp-Clone"
           // liveDemoLink="https://github.com/aditya74841/"
         />
       </div>
