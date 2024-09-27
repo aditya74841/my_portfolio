@@ -150,7 +150,7 @@ const Portfolio = () => {
           imgSrc={IMG2}
           title="Google Keep Clone with Delete and Archive Features"
           githubLink="https://github.com/aditya74841/React_TODO_frontend"
-          liveDemoLink="https://takenotesss.netlify.app/"
+          liveDemoLink="https://keeep.netlify.app/"
         />
 
         <PortfolioItem
