@@ -24,13 +24,13 @@ const About = () => {
             <article className="about__card">
               <FaAward className="about__icon mx-auto" />
               <h5>Experience</h5>
-              <small>1.7+ Years</small>
+              <small>2 Years</small>
             </article>
 
             <article className="about__card">
               <FiUsers className="about__icon mx-auto" />
               <h5>Code</h5>
-              <small>100000+ lines</small>
+              <small>10000+ lines</small>
             </article>
 
             <article className="about__card">
@@ -41,14 +41,14 @@ const About = () => {
           </div>
           <p>
             {" "}
-            Greetings, tech enthusiasts! 🚀 I'm a dynamic full stack developer
-            on a mission to weave magic on the web! My captivating web apps come
-            alive with HTML, CSS, JavaScript, React, and Next.js. With mastery
-            in Python and Node.js, I create strong back-ends, managing
-            databases, APIs, and deployment. But wait, there's more! 🌟📱 I'm
-            also skilled in crafting mesmerizing native apps for iOS and Android
-            using React Native! Let's join forces and create extraordinary
-            digital experiences together! 💻💡📱.
+            Greetings, recruiters and tech professionals!👋 <br />I am a highly
+            skilled and passionate full stack developer with extensive
+            experience in building dynamic, high-performance web applications
+            using cutting-edge technologies such as HTML, CSS, JavaScript,
+            React, and Next.js. On the back-end, I harness the power of Python
+            and Node.js to develop robust, scalable solutions, efficiently
+            managing databases, RESTful APIs, and ensuring seamless deployment
+            processes.
           </p>
           {/* <div style={{justifyContent:'space-between',alignItems:'center'}}> */}
           <a href="#contact" className="btn btn-primary">
