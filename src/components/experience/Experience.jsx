@@ -48,7 +48,7 @@ const Experience = () => {
                 </a>
 
                 <p>Full Stack Developer</p>
-                <small className="text-light">Feb 2024 - July 2024</small>
+                <small className="text-light">Feb 2024 - present</small>
               </div>
             </article>
 
