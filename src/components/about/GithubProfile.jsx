@@ -10,7 +10,9 @@ const GitHubProfile = () => {
 
   useEffect(() => {
     const fetchGitHubData = async () => {
-        const token = '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'; 
+        const token =  process.env.REACT_APP_GITHUB_TOKEN;
+     
+    
         const headers = {
           Authorization: `Bearer ${token}`,
         };
