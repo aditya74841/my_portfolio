@@ -5,6 +5,7 @@ import CV from "../../assets/aditya_resume.pdf";
 import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
+import GitHubProfile from "./GithubProfile";
 
 const About = () => {
   return (
@@ -67,9 +68,18 @@ const About = () => {
           </a>
           {/* </div> */}
         </div>
+        <GitHubProfile />
+
+      </div>
+      <div className="">
+      
       </div>
     </section>
   );
 };
 
 export default About;
+
+
+
+// github Token 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
