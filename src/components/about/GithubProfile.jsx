@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import GitHubCalendar from "react-github-contribution-calendar";
 
 const GitHubProfile = () => {
   const username = "aditya74841";
@@ -7,42 +6,62 @@ const GitHubProfile = () => {
   const [repos, setRepos] = useState([]); // Ensure this is initialized as an array
   const [events, setEvents] = useState([]);
   const [showAllRepos, setShowAllRepos] = useState(false); // State to control showing all repos
+  const [error, setError] = useState(null); // State to handle any errors during fetch
 
   useEffect(() => {
     const fetchGitHubData = async () => {
-        const token =  process.env.REACT_APP_GITHUB_TOKEN;
-     
-    
-        const headers = {
-          Authorization: `Bearer ${token}`,
-        };
-      
-        try {
-          const [profileRes, repoRes, eventsRes] = await Promise.all([
-            fetch(`https://api.github.com/users/${username}`, { headers }),
-            fetch(`https://api.github.com/users/${username}/repos`, { headers }),
-            fetch(`https://api.github.com/users/${username}/events/public`, { headers }),
-          ]);
-      
-          const profileData = await profileRes.json();
-          const repoData = await repoRes.json();
-          const eventsData = await eventsRes.json();
-      
-          setProfile(profileData);
-          setRepos(repoData);
-          setEvents(eventsData);
-        } catch (error) {
-          console.error("Error fetching GitHub data:", error);
-        }
+      const token = process.env.REACT_APP_GITHUB_TOKEN;
+      const headers = {
+        Authorization: `Bearer ${token}`,
       };
-      
+
+    //   console.log("the token is ", token);
+
+      try {
+        const [profileRes, repoRes, eventsRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${username}`, { headers }),
+          fetch(`https://api.github.com/users/${username}/repos`, { headers }),
+          fetch(`https://api.github.com/users/${username}/events/public`, {
+            headers,
+          }),
+        ]);
+
+        // console.log("the Profile res is ",profileRes)
+
+        // console.log("the Repo res is ",repoRes)
+
+        // console.log("the event res is ",eventsRes)
+
+        if (!profileRes.ok || !repoRes.ok || !eventsRes.ok) {
+          throw new Error("Failed to fetch data from GitHub");
+        }
+
+        const profileData = await profileRes.json();
+        const repoData = await repoRes.json();
+        const eventsData = await eventsRes.json();
+
+        setProfile(profileData);
+        setRepos(repoData);
+        setEvents(eventsData);
+        setError(null); // Reset error state if fetch is successful
+      } catch (error) {
+        setError(error.message); // Set the error message if something fails
+        console.error("Error fetching GitHub data:", error);
+      }
+    };
+
     fetchGitHubData();
   }, [username]);
 
-  if (!profile)
+  if (error) {
+    return <p className="text-center mt-10 text-gray-500">Error: {error}</p>;
+  }
+
+  if (!profile) {
     return (
       <p className="text-center mt-10 text-gray-500">Loading GitHub data...</p>
     );
+  }
 
   // Slice the first 8 repositories to show initially
   const displayedRepos = showAllRepos ? repos : repos.slice(0, 8);
@@ -94,12 +113,18 @@ const GitHubProfile = () => {
               className="bg-white rounded-xl shadow hover:shadow-lg transition-all p-5 border border-gray-100"
             >
               <h3 className="text-xl font-semibold text-blue-600 hover:underline">
-                <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {repo.name}
                 </a>
               </h3>
               <p className="text-gray-600 mt-1 mb-3 text-sm h-20 overflow-hidden text-ellipsis">
-                {repo.description ? repo.description : "No description available."}
+                {repo.description
+                  ? repo.description
+                  : "No description available."}
               </p>
               <div className="text-xs flex justify-between text-gray-500">
                 <span>⭐ {repo.stargazers_count}</span>
@@ -112,7 +137,7 @@ const GitHubProfile = () => {
           <p>No repositories available.</p>
         )}
       </div>
-      
+
       {/* Show All Button */}
       {repos.length > 8 && !showAllRepos && (
         <div className="text-center">
@@ -130,27 +155,31 @@ const GitHubProfile = () => {
         Recent GitHub Activity
       </h2>
       <ul className="space-y-4 mb-12">
-        {events.slice(0, 5).map((event) => (
-          <li
-            key={event.id}
-            className="bg-white p-4 rounded-lg shadow border border-gray-100"
-          >
-            <p className="text-sm text-gray-700">
-              <strong>{event.type}</strong> in{" "}
-              <a
-                className="text-blue-600 hover:underline"
-                href={`https://github.com/${event.repo.name}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {event.repo.name}
-              </a>
-            </p>
-            <p className="text-xs text-gray-500 mt-1">
-              {new Date(event.created_at).toLocaleString()}
-            </p>
-          </li>
-        ))}
+        {events.length > 0 ? (
+          events.slice(0, 5).map((event) => (
+            <li
+              key={event.id}
+              className="bg-white p-4 rounded-lg shadow border border-gray-100"
+            >
+              <p className="text-sm text-gray-700">
+                <strong>{event.type}</strong> in{" "}
+                <a
+                  className="text-blue-600 hover:underline"
+                  href={`https://github.com/${event.repo.name}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {event.repo.name}
+                </a>
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                {new Date(event.created_at).toLocaleString()}
+              </p>
+            </li>
+          ))
+        ) : (
+          <p>No recent activity available.</p>
+        )}
       </ul>
     </div>
   );
