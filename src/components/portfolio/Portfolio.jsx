@@ -100,6 +100,7 @@ import IMG3 from "../../assets/to-do.png";
 import IMG4 from "../../assets/inshorts.png";
 import IMG5 from "../../assets/takememories.jpg";
 import IMG6 from "../../assets/whatsapp.png";
+import SEO from "../../SEO";
 
 const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
   <article className="portfolio__item h-full ">
@@ -138,54 +139,61 @@ const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
 
 const Portfolio = () => {
   return (
-    <section id="portfolio">
-      <h5>My Recent Work</h5>
-      <h2>Portfolio</h2>
-      <div className="container portfolio__container">
-        <PortfolioItem
-          imgSrc={IMG1}
-          title="Cura - Lifestyle E-commerce Platform Frontend"
-          githubLink="https://github.com/aditya74841/Ecommerce_Frontend.github.io"
-          liveDemoLink="https://shopavi.netlify.app/index.html"
-          className="w-full"
-        />
+    <>
+      <SEO
+        title="Aditya Ranjan | Web Development Portfolio"
+        description="Explore the web development projects of Aditya Ranjan, including E-commerce platforms, Google Keep clone, To-Do apps, and more."
+        keywords="Aditya Ranjan, Portfolio, Web Development, React Projects, Full Stack, E-commerce, Clones, React, Node.js"
+      />
+      <section id="portfolio">
+        <h5>My Recent Work</h5>
+        <h2>Portfolio</h2>
+        <div className="container portfolio__container">
+          <PortfolioItem
+            imgSrc={IMG1}
+            title="Cura - Lifestyle E-commerce Platform Frontend"
+            githubLink="https://github.com/aditya74841/Ecommerce_Frontend.github.io"
+            liveDemoLink="https://shopavi.netlify.app/index.html"
+            className="w-full"
+          />
 
-        <PortfolioItem
-          imgSrc={IMG2}
-          title="Google Keep Clone with Delete and Archive Features"
-          githubLink="https://github.com/aditya74841/React_TODO_frontend"
-          liveDemoLink="https://keeep.netlify.app/"
-        />
+          <PortfolioItem
+            imgSrc={IMG2}
+            title="Google Keep Clone with Delete and Archive Features"
+            githubLink="https://github.com/aditya74841/React_TODO_frontend"
+            liveDemoLink="https://keeep.netlify.app/"
+          />
 
-        <PortfolioItem
-          imgSrc={IMG3}
-          title="To-Do App with Authentication (Login/Logout)"
-          githubLink="https://github.com"
-          liveDemoLink="https://react-todo-frontend-silk.vercel.app/"
-        />
+          <PortfolioItem
+            imgSrc={IMG3}
+            title="To-Do App with Authentication (Login/Logout)"
+            githubLink="https://github.com"
+            liveDemoLink="https://react-todo-frontend-silk.vercel.app/"
+          />
 
-        <PortfolioItem
-          imgSrc={IMG4}
-          title="Inshorts Clone"
-          githubLink="https://github.com/aditya74841/"
-          // liveDemoLink="https://github.com/aditya74841/"
-        />
+          <PortfolioItem
+            imgSrc={IMG4}
+            title="Inshorts Clone"
+            githubLink="https://github.com/aditya74841/"
+            // liveDemoLink="https://github.com/aditya74841/"
+          />
 
-        <PortfolioItem
-          imgSrc={IMG5}
-          title="Music Portfolio"
-          githubLink="https://github.com/aditya74841/music_portfolio"
-          liveDemoLink="https://music-portfolio-gamma.vercel.app/"
-        />
+          <PortfolioItem
+            imgSrc={IMG5}
+            title="Music Portfolio"
+            githubLink="https://github.com/aditya74841/music_portfolio"
+            liveDemoLink="https://music-portfolio-gamma.vercel.app/"
+          />
 
-        <PortfolioItem
-          imgSrc={IMG6}
-          title="WhatsApp Clone"
-          githubLink="https://github.com/aditya74841/whatsapp-Clone"
-          // liveDemoLink="https://github.com/aditya74841/"
-        />
-      </div>
-    </section>
+          <PortfolioItem
+            imgSrc={IMG6}
+            title="WhatsApp Clone"
+            githubLink="https://github.com/aditya74841/whatsapp-Clone"
+            // liveDemoLink="https://github.com/aditya74841/"
+          />
+        </div>
+      </section>
+    </>
   );
 };
 

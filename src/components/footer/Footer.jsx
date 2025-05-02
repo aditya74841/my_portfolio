@@ -3,10 +3,17 @@ import './footer.css'
 import { FaGithub } from 'react-icons/fa'
 import { FiInstagram } from 'react-icons/fi'
 import { FaLinkedin } from 'react-icons/fa'
+import SEO from '../../SEO'
 
 const Footer = () => {
     return (
-        <footer>
+        <>
+        <SEO
+        title="Aditya Ranjan | Footer"
+        description="Explore the footer of Aditya Ranjan's website. Find links to social media profiles and the navigation menu."
+        keywords="Aditya Ranjan, GitHub, Instagram, LinkedIn, Footer, Portfolio"
+      />
+      <footer>
             <a href="#home" className='footer__logo'>Aditya Ranjan</a>
 
             <ul className="permalinks">
@@ -30,6 +37,8 @@ const Footer = () => {
                 <small>&copy; Aditya Ranjan.All rights reserved</small>
             </div>
         </footer>
+        </>
+        
     )
 }
 

@@ -7,9 +7,16 @@ import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
 import GitHubProfile from "./GithubProfile";
 import LeetCodeProfile from "./LeetcodeProfile";
+import SEO from "../../SEO";
 
 const About = () => {
   return (
+    <>
+    <SEO 
+  title="About Aditya Ranjan | Full Stack Developer"
+  description="Learn more about Aditya Ranjan, a passionate Full Stack Web Developer with experience in building dynamic applications using modern technologies."
+  keywords="Aditya Ranjan, Full Stack Developer, Web Developer, React Developer, Node.js, Web Development"
+  />
     <section id="about">
       <h5>Get to Know</h5>
       <h2>About Me</h2>
@@ -77,6 +84,8 @@ const About = () => {
       
       </div>
     </section>
+    </>
+  
   );
 };
 
