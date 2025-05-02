@@ -6,6 +6,7 @@ import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
 import GitHubProfile from "./GithubProfile";
+import LeetCodeProfile from "./LeetcodeProfile";
 
 const About = () => {
   return (
@@ -69,6 +70,7 @@ const About = () => {
           {/* </div> */}
         </div>
         <GitHubProfile />
+        <LeetCodeProfile username={"aditya7884"}/>
 
       </div>
       <div className="">
