@@ -11,11 +11,13 @@ const GitHubProfile = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       const token = process.env.REACT_APP_GITHUB_TOKEN;
+   
+
       const headers = {
         Authorization: `Bearer ${token}`,
       };
 
-    //   console.log("the token is ", token);
+      //   console.log("the token is ", token);
 
       try {
         const [profileRes, repoRes, eventsRes] = await Promise.all([
@@ -33,7 +35,8 @@ const GitHubProfile = () => {
         // console.log("the event res is ",eventsRes)
 
         if (!profileRes.ok || !repoRes.ok || !eventsRes.ok) {
-          throw new Error("Failed to fetch data from GitHub");
+          const message = `Status: ${profileRes.status}, Repo: ${repoRes.status}, Events: ${eventsRes.status}`;
+          throw new Error(`GitHub API error: ${message}`);
         }
 
         const profileData = await profileRes.json();
