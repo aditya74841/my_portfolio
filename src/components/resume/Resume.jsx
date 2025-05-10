@@ -9,6 +9,9 @@ import {
 } from "react-icons/fa";
 import CV from "../../assets/aditya_resume.pdf";
 import SEO from "../../SEO";
+import { FaClipboard } from "react-icons/fa"; // Add this with your other imports
+import { toast } from "react-hot-toast"; // Optional, if you're using toast for feedback
+
 const Resume = () => {
   return (
     <>
@@ -81,6 +84,18 @@ const Resume = () => {
                 <a href={CV} download className="text-blue-600 hover:underline">
                   Download CV
                 </a>
+              </p>
+              <p
+                className="flex items-center cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  toast && toast.success("Link copied!");
+                }}
+              >
+                <FaClipboard className="mr-3 text-indigo-500" />
+                <span className="text-blue-600 hover:underline">
+                  Copy CV
+                </span>
               </p>
             </div>
           </aside>

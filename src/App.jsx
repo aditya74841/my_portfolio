@@ -14,6 +14,8 @@ import Footer from "./components/footer/Footer";
 import { Helmet } from "react-helmet";
 import Main from "./components/blog/Main";
 import Resume from "./components/resume/Resume";
+import { Toaster } from "react-hot-toast";
+
 
 const FullHome = () => (
   <>
@@ -31,7 +33,9 @@ const FullHome = () => (
 
 const App = () => {
   return (
-    <Router>
+    <>
+     <Toaster position="top-center" />
+     <Router>
       <Helmet>
         <script
           async
@@ -53,6 +57,8 @@ const App = () => {
         <Route path="/cv" element={<Resume />} />
       </Routes>
     </Router>
+    </>
+ 
   );
 };
 
