@@ -13,6 +13,7 @@ import Footer from "./components/footer/Footer";
 
 import { Helmet } from "react-helmet";
 import Main from "./components/blog/Main";
+import Resume from "./components/resume/Resume";
 
 const FullHome = () => (
   <>
@@ -49,6 +50,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<FullHome />} />
         <Route path="/blog" element={<Main />} />
+        <Route path="/cv" element={<Resume />} />
       </Routes>
     </Router>
   );
