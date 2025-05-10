@@ -60,9 +60,9 @@ This app is ready for deployment. See the [official guide](https://facebook.gith
 
 ## 📊 GitHub Stats
 
-![Aditya Ranjan's GitHub Stats](https://github-readme-stats.vercel.app/api?username=aditya7884&show_icons=true&theme=radical)
+![Aditya Ranjan's GitHub Stats](https://github-readme-stats.vercel.app/api?username=aditya78841&show_icons=true&theme=radical)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=aditya7884&layout=compact&theme=radical)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=aditya78841&layout=compact&theme=radical)
 
 ---
 
