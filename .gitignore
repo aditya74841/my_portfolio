@@ -11,6 +11,10 @@
 # production
 /build
 
+
+/sidefolio-portfolio-template
+/sidefolio-portfolio-template.zip
+
 # misc
 .DS_Store
 .env

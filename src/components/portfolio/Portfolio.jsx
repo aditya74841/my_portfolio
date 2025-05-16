@@ -100,6 +100,7 @@ import IMG3 from "../../assets/to-do.png";
 import IMG4 from "../../assets/inshorts.png";
 import IMG5 from "../../assets/takememories.jpg";
 import IMG6 from "../../assets/whatsapp.png";
+import IMG7 from "../../assets/shortUrl.webp";
 import SEO from "../../SEO";
 
 const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
@@ -154,7 +155,7 @@ const Portfolio = () => {
             title="Cura - Lifestyle E-commerce Platform Frontend"
             githubLink="https://github.com/aditya74841/Ecommerce_Frontend.github.io"
             liveDemoLink="https://shopavi.netlify.app/index.html"
-            className="w-full"
+            // className="w-full"
           />
 
           <PortfolioItem
@@ -190,6 +191,13 @@ const Portfolio = () => {
             title="WhatsApp Clone"
             githubLink="https://github.com/aditya74841/whatsapp-Clone"
             // liveDemoLink="https://github.com/aditya74841/"
+          />
+
+          <PortfolioItem
+            imgSrc={IMG7}
+            title="Url Shortner"
+            githubLink="https://github.com/aditya74841/Url_Shortner"
+            liveDemoLink="https://url-shortner-m4db.onrender.com/"
           />
         </div>
       </section>
