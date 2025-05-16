@@ -11,6 +11,7 @@ import CV from "../../assets/aditya_resume.pdf";
 import SEO from "../../SEO";
 import { FaClipboard } from "react-icons/fa"; // Add this with your other imports
 import { toast } from "react-hot-toast"; // Optional, if you're using toast for feedback
+// import ME from '../../assets/me.jpg';
 
 const Resume = () => {
   return (
@@ -25,7 +26,10 @@ const Resume = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
           {/* Sidebar */}
           <aside className="md:col-span-1 bg-white shadow-xl rounded-xl p-6 border border-gray-200 md:sticky md:top-6 h-fit">
+            {/* <img src={ME} alt="Aditya Ranjan" className="w-24 h-24 rounded-full mx-auto mb-2" /> */}
             <div className="text-center">
+              
+
               <h1 className="text-4xl font-bold mb-1 text-gray-900">
                 Aditya Ranjan
               </h1>
@@ -94,7 +98,7 @@ const Resume = () => {
               >
                 <FaClipboard className="mr-3 text-indigo-500" />
                 <span className="text-blue-600 hover:underline">
-                  Copy CV
+                  Copy CV Link
                 </span>
               </p>
             </div>
@@ -124,7 +128,7 @@ const Resume = () => {
               <div className="mb-6">
                 <h3 className="text-xl font-bold">CodenCreative</h3>
                 <p className="text-sm text-gray-500 mb-2">
-                  Full Stack Developer · Feb 2024 – Mar 2025
+                  Full Stack Developer · Feb 2024 – Present
                 </p>
                 <ul className="list-disc ml-6 space-y-2 text-sm">
                   <li>
