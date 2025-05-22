@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 import Main from "./components/blog/Main";
 import Resume from "./components/resume/Resume";
 import { Toaster } from "react-hot-toast";
+import AIChat from "./components/Ai/AIChat";
 
 
 const FullHome = () => (
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/" element={<FullHome />} />
         <Route path="/blog" element={<Main />} />
         <Route path="/cv" element={<Resume />} />
+        <Route path="/ai" element={<AIChat />} />
       </Routes>
     </Router>
     </>
