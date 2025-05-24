@@ -115,12 +115,15 @@ const AIChat = () => {
     setResponse("");
 
     try {
-      const res = await fetch("http://localhost:8080/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
-      });
-
+      const res = await fetch(
+        "https://portfolio-server-8zb7.onrender.com/ask",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question }),
+        }
+      );
+      // console.log(res);
       const data = await res.json();
 
       if (res.ok) {
@@ -129,6 +132,7 @@ const AIChat = () => {
         setError(data.error || "Something went wrong.");
       }
     } catch (err) {
+      // console.log("The Error is",err)
       setError("Could not connect to the assistant.");
     } finally {
       setLoading(false);
