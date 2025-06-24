@@ -101,6 +101,7 @@ import IMG4 from "../../assets/inshorts.png";
 import IMG5 from "../../assets/takememories.jpg";
 import IMG6 from "../../assets/whatsapp.png";
 import IMG7 from "../../assets/shortUrl.webp";
+import IMG8 from "../../assets/special-app.webp"
 import SEO from "../../SEO";
 
 const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
@@ -108,9 +109,9 @@ const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
     <div className="portfolio__item-image bg-red-600 h-1/2">
       <img src={imgSrc} alt={title} className="" />
     </div>
-    <div className="mt-16">
-      <div className=" h-1/2 ">
-        <h3 className="">{title}</h3>
+    <div className="mt-16 h-1/2">
+    
+        <h3 className="h-1/4">{title}</h3>
 
         <div className="portfolio__item-cta ">
           <a
@@ -133,10 +134,34 @@ const PortfolioItem = ({ imgSrc, title, githubLink, liveDemoLink }) => (
             </a>
           )}
         </div>
-      </div>
+     
     </div>
   </article>
 );
+
+
+
+
+const ProjectCard = ({ imgSrc, title, githubLink, liveDemoLink })=>(
+  <div className="card bg-base-100 w-96 shadow-sm p-4 bg-red-600">
+  <figure>
+    {/* <img
+      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+      alt="Shoes" /> */}
+      <img src={imgSrc} alt={title} className="" />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title">{title}</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="card-actions justify-end">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div> 
+)
+
+
+
 
 const Portfolio = () => {
   return (
@@ -150,6 +175,7 @@ const Portfolio = () => {
         <h5>My Recent Work</h5>
         <h2>Portfolio</h2>
         <div className="container portfolio__container">
+          
           <PortfolioItem
             imgSrc={IMG7}
             title="Url Shortner"
@@ -195,6 +221,12 @@ const Portfolio = () => {
             title="WhatsApp Clone"
             githubLink="https://github.com/aditya74841/whatsapp-Clone"
             // liveDemoLink="https://github.com/aditya74841/"
+          />
+            <PortfolioItem
+            imgSrc={IMG8}
+            title="Aspecial App"
+            githubLink="https://github.com/aditya74841/Quote-Backend"
+            liveDemoLink="https://quote-backend-xqfm.onrender.com/api-docs/"
           />
         </div>
       </section>
