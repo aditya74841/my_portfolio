@@ -113,6 +113,8 @@ const AIChat = () => {
     setLoading(true);
     setError("");
     setResponse("");
+    // http://localhost:8080/ask
+    // https://portfolio-server-8zb7.onrender.com/ask
 
     try {
       const res = await fetch(
@@ -132,7 +134,7 @@ const AIChat = () => {
         setError(data.error || "Something went wrong.");
       }
     } catch (err) {
-      // console.log("The Error is",err)
+      console.log("The Error is", err.message);
       setError("Could not connect to the assistant.");
     } finally {
       setLoading(false);

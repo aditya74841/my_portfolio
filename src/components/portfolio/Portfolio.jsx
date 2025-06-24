@@ -151,10 +151,16 @@ const Portfolio = () => {
         <h2>Portfolio</h2>
         <div className="container portfolio__container">
           <PortfolioItem
+            imgSrc={IMG7}
+            title="Url Shortner"
+            githubLink="https://github.com/aditya74841/Url_Shortner"
+            liveDemoLink="https://p1.iamadityaranjan.com/"
+          />
+          <PortfolioItem
             imgSrc={IMG1}
             title="Cura - Lifestyle E-commerce Platform Frontend"
             githubLink="https://github.com/aditya74841/Ecommerce_Frontend.github.io"
-            liveDemoLink="https://shopavi.netlify.app/index.html"
+            liveDemoLink="https://p2.iamadityaranjan.com/"
             // className="w-full"
           />
 
@@ -162,14 +168,19 @@ const Portfolio = () => {
             imgSrc={IMG2}
             title="Google Keep Clone with Delete and Archive Features"
             githubLink="https://github.com/aditya74841/React_TODO_frontend"
-            liveDemoLink="https://keeep.netlify.app/"
+            liveDemoLink="https://p3.iamadityaranjan.com/"
           />
-
+          <PortfolioItem
+            imgSrc={IMG5}
+            title="Music Portfolio"
+            githubLink="https://github.com/aditya74841/music_portfolio"
+            liveDemoLink="https://p4.iamadityaranjan.com/"
+          />
           <PortfolioItem
             imgSrc={IMG3}
             title="To-Do App with Authentication (Login/Logout)"
             githubLink="https://github.com"
-            liveDemoLink="https://react-todo-frontend-silk.vercel.app/"
+            liveDemoLink="https://p5.iamadityaranjan.com/login"
           />
 
           <PortfolioItem
@@ -180,24 +191,10 @@ const Portfolio = () => {
           />
 
           <PortfolioItem
-            imgSrc={IMG5}
-            title="Music Portfolio"
-            githubLink="https://github.com/aditya74841/music_portfolio"
-            liveDemoLink="https://music-portfolio-gamma.vercel.app/"
-          />
-
-          <PortfolioItem
             imgSrc={IMG6}
             title="WhatsApp Clone"
             githubLink="https://github.com/aditya74841/whatsapp-Clone"
             // liveDemoLink="https://github.com/aditya74841/"
-          />
-
-          <PortfolioItem
-            imgSrc={IMG7}
-            title="Url Shortner"
-            githubLink="https://github.com/aditya74841/Url_Shortner"
-            liveDemoLink="https://url-shortner-m4db.onrender.com/"
           />
         </div>
       </section>
