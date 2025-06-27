@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/header/Header";
@@ -33,6 +33,7 @@ const FullHome = () => (
 );
 
 const App = () => {
+ 
   return (
     <>
       <Toaster position="top-center" />
