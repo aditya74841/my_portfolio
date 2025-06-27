@@ -30,7 +30,7 @@
 // export default FloatingChat;
 
 import React, { useEffect, useState } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import AIChat from "./AIChat";
 
 const FloatingChat = () => {

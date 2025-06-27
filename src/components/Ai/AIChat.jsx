@@ -143,7 +143,7 @@
 // };
 
 // export default AIChat;
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef} from "react";
 import { LoaderCircle, User, Bot, X } from "lucide-react";
 
 const AIChat = ({ embedded = false, onClose }) => {
