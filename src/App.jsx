@@ -16,7 +16,7 @@ import Main from "./components/blog/Main";
 import Resume from "./components/resume/Resume";
 import { Toaster } from "react-hot-toast";
 import AIChat from "./components/Ai/AIChat";
-
+import FloatingChat from "./components/Ai/FloatingChat";
 
 const FullHome = () => (
   <>
@@ -35,32 +35,32 @@ const FullHome = () => (
 const App = () => {
   return (
     <>
-     <Toaster position="top-center" />
-     <Router>
-      <Helmet>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-79B88YP1GN"
-        ></script>
-        <script>
-          {`
+      <Toaster position="top-center" />
+      <Router>
+        <Helmet>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-79B88YP1GN"
+          ></script>
+          <script>
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-79B88YP1GN');
           `}
-        </script>
-      </Helmet>
+          </script>
+        </Helmet>
 
-      <Routes>
-        <Route path="/" element={<FullHome />} />
-        <Route path="/blog" element={<Main />} />
-        <Route path="/cv" element={<Resume />} />
-        <Route path="/ai" element={<AIChat />} />
-      </Routes>
-    </Router>
+        <Routes>
+          <Route path="/" element={<FullHome />} />
+          <Route path="/blog" element={<Main />} />
+          <Route path="/cv" element={<Resume />} />
+          <Route path="/ai" element={<AIChat />} />
+        </Routes>
+        <FloatingChat />
+      </Router>
     </>
- 
   );
 };
 
