@@ -315,8 +315,8 @@ const Resume = () => {
               <ContactItem icon={<FaPhoneAlt />} text="+91 74810 92465" />
               <ContactItem
                 icon={<FaEnvelope />}
-                text="aditya74810@gmail.com"
-                href="mailto:aditya74810@gmail.com"
+                text="aditya@iamadityaranjan.com"
+                href="mailto:iamadityaranjan.com"
               />
               <ContactItem
                 icon={<FaLinkedin />}

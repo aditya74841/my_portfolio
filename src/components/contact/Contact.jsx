@@ -41,7 +41,7 @@ const Contact = () => {
               <h4>Email</h4>
               <h5>aditya74810@gmail.com</h5>
               <a
-                href="mailto:aditya74810@gmail.com"
+                href="mailto:aditya@iamadityaranjan.com"
                 target="_blank"
                 rel="noreferrer"
               >
