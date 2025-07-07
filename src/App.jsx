@@ -17,6 +17,8 @@ import Resume from "./components/resume/Resume";
 import { Toaster } from "react-hot-toast";
 import AIChat from "./components/Ai/AIChat";
 import FloatingChat from "./components/Ai/FloatingChat";
+import CategoryPage from "./components/category/CategoryPage";
+import UpdatePage from "./components/update/UpdatePage";
 
 const FullHome = () => (
   <>
@@ -58,6 +60,9 @@ const App = () => {
           <Route path="/blog" element={<Main />} />
           <Route path="/cv" element={<Resume />} />
           <Route path="/ai" element={<AIChat />} />
+          <Route path="/category" element={<CategoryPage />} />
+          <Route path="/update" element={<UpdatePage />} />
+
         </Routes>
         <FloatingChat />
       </Router>
