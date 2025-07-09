@@ -19,6 +19,7 @@ import AIChat from "./components/Ai/AIChat";
 import FloatingChat from "./components/Ai/FloatingChat";
 import CategoryPage from "./components/category/CategoryPage";
 import UpdatePage from "./components/update/UpdatePage";
+import DailyUpdate from "./components/dailyUpdate/DailyUpdate";
 
 const FullHome = () => (
   <>
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/ai" element={<AIChat />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/update" element={<UpdatePage />} />
+          <Route path="/daily-update" element={<DailyUpdate />} />
 
         </Routes>
         <FloatingChat />

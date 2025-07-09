@@ -1,9 +1,21 @@
-
-
-
 import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { Edit2, Trash2, Plus, FileText, Search, Filter, Calendar, Tag } from "lucide-react";
-import { fetchUpdates, fetchCategories, createUpdate, updateUpdate, deleteUpdate } from "./api";
+import {
+  Edit2,
+  Trash2,
+  Plus,
+  FileText,
+  Search,
+  Filter,
+  Calendar,
+  Tag,
+} from "lucide-react";
+import {
+  fetchUpdates,
+  fetchCategories,
+  createUpdate,
+  updateUpdate,
+  deleteUpdate,
+} from "./api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,7 +38,7 @@ const UpdatePage = () => {
     try {
       setLoading(true);
       const data = await fetchUpdates();
-      setUpdates(data);
+      setUpdates(data.updates || []);
     } catch (err) {
       toast.error("Failed to fetch updates");
       console.error("Error fetching updates:", err.message);
@@ -50,35 +62,38 @@ const UpdatePage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    if (!form.title.trim()) {
-      toast.error("Title is required");
-      return;
-    }
-    if (!form.category) {
-      toast.error("Category is required");
-      return;
-    }
-    try {
-      setLoading(true);
-      if (editId) {
-        await updateUpdate(editId, form);
-        toast.success("Update modified successfully");
-      } else {
-        await createUpdate(form);
-        toast.success("Update created successfully");
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!form.title.trim()) {
+        toast.error("Title is required");
+        return;
       }
-      setForm({ title: "", description: "", category: "" });
-      setEditId(null);
-      getUpdates();
-    } catch (err) {
-      toast.error(editId ? "Failed to update" : "Failed to create update");
-      console.error("Error saving update:", err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [editId, form, getUpdates]);
+      if (!form.category) {
+        toast.error("Category is required");
+        return;
+      }
+      try {
+        setLoading(true);
+        if (editId) {
+          await updateUpdate(editId, form);
+          toast.success("Update modified successfully");
+        } else {
+          await createUpdate(form);
+          toast.success("Update created successfully");
+        }
+        setForm({ title: "", description: "", category: "" });
+        setEditId(null);
+        getUpdates();
+      } catch (err) {
+        toast.error(editId ? "Failed to update" : "Failed to create update");
+        console.error("Error saving update:", err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [editId, form, getUpdates]
+  );
 
   const handleEdit = useCallback((update) => {
     setForm({
@@ -94,20 +109,24 @@ const UpdatePage = () => {
     setEditId(null);
   }, []);
 
-  const handleDelete = useCallback(async (id, title) => {
-    if (!window.confirm(`Are you sure you want to delete "${title}"?`)) return;
-    try {
-      setLoading(true);
-      await deleteUpdate(id);
-      toast.success("Update deleted successfully");
-      getUpdates();
-    } catch (err) {
-      toast.error("Failed to delete update");
-      console.error("Error deleting update:", err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [getUpdates]);
+  const handleDelete = useCallback(
+    async (id, title) => {
+      if (!window.confirm(`Are you sure you want to delete "${title}"?`))
+        return;
+      try {
+        setLoading(true);
+        await deleteUpdate(id);
+        toast.success("Update deleted successfully");
+        getUpdates();
+      } catch (err) {
+        toast.error("Failed to delete update");
+        console.error("Error deleting update:", err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [getUpdates]
+  );
 
   // Format date for display
   const formatDate = (dateString) => {
@@ -117,19 +136,26 @@ const UpdatePage = () => {
       month: "short",
       day: "numeric",
       hour: "2-digit",
-      minute: "2-digit"
+      minute: "2-digit",
     });
   };
 
+  console.log("The updates is ", updates);
   // Filter and sort updates
   const filteredAndSortedUpdates = useMemo(() => {
     return updates
-      .filter(update => {
+      .filter((update) => {
         const matchesSearch =
-          (update.title || update.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (update.description || "").toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesCategory = !categoryFilter ||
-          (update.createdBy?._id === categoryFilter || update.createdBy === categoryFilter);
+          (update.title || update.name || "")
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          (update.description || "")
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
+        const matchesCategory =
+          !categoryFilter ||
+          update.createdBy?._id === categoryFilter ||
+          update.createdBy === categoryFilter;
         return matchesSearch && matchesCategory;
       })
       .sort((a, b) => {
@@ -139,7 +165,9 @@ const UpdatePage = () => {
           case "oldest":
             return new Date(a.createdAt || 0) - new Date(b.createdAt || 0);
           case "title":
-            return (a.title || a.name || "").localeCompare(b.title || b.name || "");
+            return (a.title || a.name || "").localeCompare(
+              b.title || b.name || ""
+            );
           default:
             return 0;
         }
@@ -153,15 +181,28 @@ const UpdatePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-100 py-10">
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-2">
             <FileText className="w-10 h-10 text-blue-700 drop-shadow" />
-            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Update Management</h1>
+            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+              Update Management
+            </h1>
           </div>
-          <p className="text-lg text-gray-600">Create, edit, and manage your updates and announcements</p>
+          <p className="text-lg text-gray-600">
+            Create, edit, and manage your updates and announcements
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -227,7 +268,7 @@ const UpdatePage = () => {
                     disabled={loading}
                     className="flex-1 bg-gradient-to-r from-blue-600 to-blue-500 text-white py-2.5 px-6 rounded-lg font-semibold shadow hover:from-blue-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {loading ? "Saving..." : (editId ? "Update" : "Create")}
+                    {loading ? "Saving..." : editId ? "Update" : "Create"}
                   </button>
                   {editId && (
                     <button
@@ -316,19 +357,29 @@ const UpdatePage = () => {
                         <td colSpan={5} className="px-8 py-12 text-center">
                           <div className="flex justify-center items-center">
                             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                            <span className="ml-3 text-gray-500 text-lg">Loading updates...</span>
+                            <span className="ml-3 text-gray-500 text-lg">
+                              Loading updates...
+                            </span>
                           </div>
                         </td>
                       </tr>
                     ) : filteredAndSortedUpdates.length === 0 ? (
                       <tr>
-                        <td colSpan={5} className="px-8 py-12 text-center text-gray-400 text-lg">
-                          {searchTerm || categoryFilter ? "No updates found matching your filters." : "No updates found. Create your first update!"}
+                        <td
+                          colSpan={5}
+                          className="px-8 py-12 text-center text-gray-400 text-lg"
+                        >
+                          {searchTerm || categoryFilter
+                            ? "No updates found matching your filters."
+                            : "No updates found. Create your first update!"}
                         </td>
                       </tr>
                     ) : (
                       filteredAndSortedUpdates.map((update) => (
-                        <tr key={update._id} className="hover:bg-blue-50/60 transition-colors">
+                        <tr
+                          key={update._id}
+                          className="hover:bg-blue-50/60 transition-colors"
+                        >
                           <td className="px-8 py-5">
                             <div className="font-semibold text-gray-900 max-w-xs truncate text-base">
                               {update.title || update.name}
@@ -363,7 +414,12 @@ const UpdatePage = () => {
                                 <Edit2 className="w-5 h-5" />
                               </button>
                               <button
-                                onClick={() => handleDelete(update._id, update.title || update.name)}
+                                onClick={() =>
+                                  handleDelete(
+                                    update._id,
+                                    update.title || update.name
+                                  )
+                                }
                                 className="p-2 text-red-600 hover:bg-red-100 rounded-lg transition-colors border border-transparent hover:border-red-300"
                                 title="Delete update"
                               >
@@ -382,7 +438,8 @@ const UpdatePage = () => {
               {!loading && filteredAndSortedUpdates.length > 0 && (
                 <div className="px-8 py-4 border-t border-gray-100 bg-blue-50 rounded-b-2xl">
                   <p className="text-base text-blue-700 font-medium">
-                    Showing {filteredAndSortedUpdates.length} of {updates.length} updates
+                    Showing {filteredAndSortedUpdates.length} of{" "}
+                    {updates.length} updates
                   </p>
                 </div>
               )}
@@ -395,214 +452,3 @@ const UpdatePage = () => {
 };
 
 export default UpdatePage;
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// // Backend endpoints
-// const BASE_URL = "http://localhost:8080/api/v1/update";
-// const CATEGORY_URL = "http://localhost:8080/api/v1/category";
-
-// const UpdatePage = () => {
-//   const [updates, setUpdates] = useState([]);
-//   const [categories, setCategories] = useState([]);
-//   const [form, setForm] = useState({
-//     title: "",
-//     description: "",
-//     category: "",
-//   });
-//   const [editId, setEditId] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   // Fetch updates
-//   const fetchUpdates = async () => {
-//     try {
-//       setLoading(true);
-//       const res = await axios.get(`${BASE_URL}?page=1&limit=100`);
-//       setUpdates(res.data.data.docs || res.data.data);
-//     } catch (err) {
-//       console.error("Error fetching updates:", err.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   // Fetch categories
-//   const fetchCategories = async () => {
-//     try {
-//       const res = await axios.get(`${CATEGORY_URL}?page=1&limit=100`);
-//       setCategories(res.data.data.docs || res.data.data);
-//     } catch (err) {
-//       console.error("Error fetching categories:", err.message);
-//     }
-//   };
-
-//   const handleChange = (e) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async () => {
-//     try {
-//       if (!form.title.trim()) return alert("Title is required");
-//       if (!form.category) return alert("Category is required");
-
-//       if (editId) {
-//         await axios.put(`${BASE_URL}/${editId}`, form);
-//         alert("Update modified");
-//       } else {
-//         await axios.post(BASE_URL, form);
-//         alert("Update created");
-//       }
-
-//       setForm({ title: "", description: "", category: "" });
-//       setEditId(null);
-//       fetchUpdates();
-//     } catch (err) {
-//       console.error("Error saving update:", err.message);
-//       alert("Failed to save update.");
-//     }
-//   };
-
-//   const handleEdit = (update) => {
-//     setForm({
-//       title: update.title || update.name,
-//       description: update.description || "",
-//       category: update.createdBy?._id || update.createdBy || "",
-//     });
-//     setEditId(update._id);
-//   };
-
-//   const handleDelete = async (id) => {
-//     if (!window.confirm("Delete this update?")) return;
-//     try {
-//       await axios.delete(`${BASE_URL}/${id}`);
-//       fetchUpdates();
-//     } catch (err) {
-//       alert("Failed to delete update");
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUpdates();
-//     fetchCategories();
-//   }, []);
-
-//   return (
-//     <div className="max-w-3xl mx-auto p-6">
-//       <h1 className="text-2xl font-bold mb-4">📁 Manage Updates</h1>
-
-//       {/* Form */}
-//       <div className="bg-white p-4 border rounded mb-6">
-//         <input
-//           type="text"
-//           name="title"
-//           placeholder="Update Title"
-//           value={form.title}
-//           onChange={handleChange}
-//           className="w-full p-2 border mb-2 text-black"
-//         />
-//         <textarea
-//           name="description"
-//           placeholder="Description"
-//           value={form.description}
-//           onChange={handleChange}
-//           className="w-full p-2 border mb-2 text-black"
-//         />
-
-//         <select
-//           name="category"
-//           value={form.category}
-//           onChange={handleChange}
-//           className="w-full p-2 border mb-2 text-black"
-//         >
-//           <option value="">Select Category</option>
-//           {categories.map((cat) => (
-//             <option key={cat._id} value={cat._id}>
-//               {cat.name}
-//             </option>
-//           ))}
-//         </select>
-
-//         <div className="flex gap-2">
-//           <button
-//             onClick={handleSubmit}
-//             className="px-4 py-2 bg-blue-600 text-white rounded"
-//           >
-//             {editId ? "Update" : "Create"}
-//           </button>
-//           {editId && (
-//             <button
-//               onClick={() => {
-//                 setForm({ title: "", description: "", category: "" });
-//                 setEditId(null);
-//               }}
-//               className="px-4 py-2 border rounded"
-//             >
-//               Cancel
-//             </button>
-//           )}
-//         </div>
-//       </div>
-
-//       {/* Update Table */}
-//       <div className="bg-white p-4 border rounded">
-//         <table className="w-full border-collapse">
-//           <thead>
-//             <tr className="border-b text-left">
-//               <th className="p-2 text-black">Title</th>
-//               <th className="p-2 text-black">Category</th>
-//               <th className="p-2 text-black">Description</th>
-//               <th className="p-2 text-black">Actions</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {loading ? (
-//               <tr>
-//                 <td colSpan={4} className="p-4 text-center text-black">
-//                   Loading...
-//                 </td>
-//               </tr>
-//             ) : updates.length === 0 ? (
-//               <tr>
-//                 <td colSpan={4} className="p-4 text-center text-black">
-//                   No updates found.
-//                 </td>
-//               </tr>
-//             ) : (
-//               updates.map((update) => (
-//                 <tr key={update._id} className="border-b">
-//                   <td className="p-2 text-black">
-//                     {update.title || update.name}
-//                   </td>
-//                   <td className="p-2 text-black">
-//                     {update.createdBy?.name || "N/A"}
-//                   </td>
-//                   <td className="p-2 text-black">{update.description}</td>
-//                   <td className="p-2 flex gap-2">
-//                     <button
-//                       onClick={() => handleEdit(update)}
-//                       className="px-2 py-1 bg-yellow-500 text-white rounded"
-//                     >
-//                       Edit
-//                     </button>
-//                     <button
-//                       onClick={() => handleDelete(update._id)}
-//                       className="px-2 py-1 bg-red-600 text-white rounded"
-//                     >
-//                       Delete
-//                     </button>
-//                   </td>
-//                 </tr>
-//               ))
-//             )}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UpdatePage;
