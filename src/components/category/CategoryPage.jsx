@@ -15,6 +15,7 @@ const CategoryPage = () => {
   const fetchCategories = useCallback(async () => {
     try {
       setLoading(true);
+
       const res = await axios.get(`${BASE_URL}?page=1&limit=100`);
       setCategories(res.data.data.docs);
     } catch (err) {
@@ -33,7 +34,7 @@ const CategoryPage = () => {
   // Handle form submission (create or update)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!form.name.trim()) {
       toast.error("Category name is required");
       return;
@@ -41,7 +42,7 @@ const CategoryPage = () => {
 
     try {
       setLoading(true);
-      
+
       if (editId) {
         await axios.put(`${BASE_URL}/${editId}`, form);
         toast.success("Category updated successfully");
@@ -54,7 +55,9 @@ const CategoryPage = () => {
       setEditId(null);
       fetchCategories();
     } catch (err) {
-      toast.error(editId ? "Failed to update category" : "Failed to create category");
+      toast.error(
+        editId ? "Failed to update category" : "Failed to create category"
+      );
       console.log(err.message);
     } finally {
       setLoading(false);
@@ -76,7 +79,7 @@ const CategoryPage = () => {
   // Delete category
   const handleDelete = async (id, name) => {
     if (!window.confirm(`Are you sure you want to delete "${name}"?`)) return;
-    
+
     try {
       setLoading(true);
       await axios.delete(`${BASE_URL}/${id}`);
@@ -91,9 +94,11 @@ const CategoryPage = () => {
   };
 
   // Filter categories based on search term
-  const filteredCategories = categories.filter(cat =>
-    cat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (cat.description && cat.description.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredCategories = categories.filter(
+    (cat) =>
+      cat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (cat.description &&
+        cat.description.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   useEffect(() => {
@@ -107,9 +112,13 @@ const CategoryPage = () => {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <FolderOpen className="w-8 h-8 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">Category Management</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Category Management
+            </h1>
           </div>
-          <p className="text-gray-600">Create, edit, and manage your categories</p>
+          <p className="text-gray-600">
+            Create, edit, and manage your categories
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -120,7 +129,7 @@ const CategoryPage = () => {
                 <Plus className="w-5 h-5" />
                 {editId ? "Edit Category" : "Add New Category"}
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -136,7 +145,7 @@ const CategoryPage = () => {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Description
@@ -150,16 +159,16 @@ const CategoryPage = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none text-black"
                   />
                 </div>
-                
+
                 <div className="flex gap-2">
                   <button
                     type="submit"
                     disabled={loading}
                     className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {loading ? "Saving..." : (editId ? "Update" : "Create")}
+                    {loading ? "Saving..." : editId ? "Update" : "Create"}
                   </button>
-                  
+
                   {editId && (
                     <button
                       type="button"
@@ -213,21 +222,33 @@ const CategoryPage = () => {
                         <td colSpan={3} className="px-6 py-8 text-center">
                           <div className="flex justify-center items-center">
                             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                            <span className="ml-2 text-gray-500">Loading categories...</span>
+                            <span className="ml-2 text-gray-500">
+                              Loading categories...
+                            </span>
                           </div>
                         </td>
                       </tr>
                     ) : filteredCategories.length === 0 ? (
                       <tr>
-                        <td colSpan={3} className="px-6 py-8 text-center text-gray-500">
-                          {searchTerm ? "No categories found matching your search." : "No categories found. Create your first category!"}
+                        <td
+                          colSpan={3}
+                          className="px-6 py-8 text-center text-gray-500"
+                        >
+                          {searchTerm
+                            ? "No categories found matching your search."
+                            : "No categories found. Create your first category!"}
                         </td>
                       </tr>
                     ) : (
                       filteredCategories.map((cat) => (
-                        <tr key={cat._id} className="hover:bg-gray-50 transition-colors">
+                        <tr
+                          key={cat._id}
+                          className="hover:bg-gray-50 transition-colors"
+                        >
                           <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="font-medium text-gray-900">{cat.name}</div>
+                            <div className="font-medium text-gray-900">
+                              {cat.name}
+                            </div>
                           </td>
                           <td className="px-6 py-4">
                             <div className="text-gray-500 max-w-xs truncate">
@@ -263,7 +284,8 @@ const CategoryPage = () => {
               {!loading && filteredCategories.length > 0 && (
                 <div className="px-6 py-3 border-t border-gray-200 bg-gray-50">
                   <p className="text-sm text-gray-600">
-                    Showing {filteredCategories.length} of {categories.length} categories
+                    Showing {filteredCategories.length} of {categories.length}{" "}
+                    categories
                   </p>
                 </div>
               )}
@@ -276,7 +298,6 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
-
 
 // import React, { useCallback, useEffect, useState } from "react";
 // import axios from "axios";
@@ -307,7 +328,7 @@ export default CategoryPage;
 //       setLoading(false);
 //     }
 //   }, [BASE_URL]);
-  
+
 //   // Handle form field changes
 //   const handleChange = (e) => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
@@ -352,7 +373,7 @@ export default CategoryPage;
 //       fetchCategories();
 //     } catch {
 //       toast.error("Failed to delete");
-      
+
 //     }
 //   };
 //   // eslint-disable-next-line
