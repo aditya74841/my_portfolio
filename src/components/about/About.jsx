@@ -5,11 +5,8 @@ import CV from "../../assets/aditya_resume.pdf";
 import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
-import GitHubProfile from "./GithubProfile";
-import LeetCodeProfile from "./LeetcodeProfile";
 import SEO from "../../SEO";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const About = () => {
   const [githubStats, setGithubStats] = useState({
@@ -18,8 +15,7 @@ const About = () => {
     stargazers: 0,
   });
   const [error, setError] = useState(null);
-  const [darkMode, setDarkMode] = useState(true);
-  const [leetCodeData, setLeetCodeData] = useState([]);
+  const [darkMode] = useState(true);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
@@ -65,21 +61,7 @@ const About = () => {
     fetchGithubStats();
   }, []);
 
-  useEffect(() => {
-    const fetchLeetCodeData = async () => {
-      try {
-        const res = await axios.get(
-          `https://alfa-leetcode-api.onrender.com/userProfile/aditya7884`
-        );
-        setLeetCodeData(res.data);
-      } catch (err) {
-        console.error("Error fetching LeetCode data", err);
-      } finally {
-        // setLoading(false);
-      }
-    };
-    fetchLeetCodeData();
-  }, []);
+ 
 
   return (
     <>
@@ -349,9 +331,7 @@ const About = () => {
                   </div>
                   <div>
                     {/* <p className="text-lg font-semibold">{leetcodeStats.ranking}</p> */}
-                    <p className="text-lg font-semibold">
-                      {githubStats.followers}
-                    </p>
+                    <p className="text-lg font-semibold">770,314</p>
 
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Ranking
@@ -360,7 +340,7 @@ const About = () => {
                   <div>
                     {/* <p className="text-lg font-semibold">{leetcodeStats.contests}</p> */}
                     <p className="text-lg font-semibold">
-                      {githubStats.followers}
+                      15
                     </p>
 
                     <p className="text-sm text-gray-500 dark:text-gray-400">

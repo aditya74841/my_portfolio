@@ -10,7 +10,7 @@ const GitHubProfile = () => {
   const [events, setEvents] = useState([]);
   const [showAllRepos, setShowAllRepos] = useState(false);
   const [error, setError] = useState(null);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode] = useState(true);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -48,9 +48,7 @@ const GitHubProfile = () => {
     fetchGitHubData();
   }, [username]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+
 
   if (error) {
     return (
