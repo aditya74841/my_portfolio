@@ -501,8 +501,11 @@ import axios from "axios";
 import { Heart, MessageCircle, Send, ThumbsDown, Clock } from "lucide-react";
 import { getRandomUserName } from "../../utils/helper";
 
-const API_BASE = "http://localhost:8080/api/v1/update";
-const CATEGORY_URL = "http://localhost:8080/api/v1/category";
+// const API_BASE = "http://localhost:8080/api/v1/update";
+// const CATEGORY_URL = "http://localhost:8080/api/v1/category";
+
+const API_BASE = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
+const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
 
 const DailyUpdate = () => {
   const [updates, setUpdates] = useState([]);
