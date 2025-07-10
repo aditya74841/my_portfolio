@@ -39,7 +39,7 @@ const Contact = () => {
             <article className="contact__option  ">
               <MdOutlineEmail className="contact__option-icon ml-auto mr-auto" />
               <h4>Email</h4>
-              <h5>aditya74810@gmail.com</h5>
+              <h5>aditya@iamadityaranjan.com</h5>
               <a
                 href="mailto:aditya@iamadityaranjan.com"
                 target="_blank"
