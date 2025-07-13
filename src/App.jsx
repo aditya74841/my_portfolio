@@ -22,6 +22,7 @@ import UpdatePage from "./components/update/UpdatePage";
 import DailyUpdate from "./components/dailyUpdate/DailyUpdate";
 import GitHubProfile from "./components/about/GithubProfile";
 import LeetCodeProfile from "./components/about/LeetcodeProfile";
+import ProjectsPage from "./components/projects/Projects";
 
 const FullHome = () => (
   <>
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/daily-update" element={<DailyUpdate />} />
           <Route path="/aditya-github" element={<GitHubProfile />} />
           <Route path="/aditya-leetcode" element={<LeetCodeProfile />} />
+          <Route path="/projects" element={<ProjectsPage />} />
 
         </Routes>
         <FloatingChat />
