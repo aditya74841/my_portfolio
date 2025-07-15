@@ -162,24 +162,24 @@ const ProjectsPage = () => {
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Gradient overlay */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} style={{ pointerEvents: 'none' }} />
       
       {/* Image section */}
       <div className={`relative h-48 sm:h-56 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-        <div className="absolute inset-0 bg-black bg-opacity-20" />
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black bg-opacity-20" style={{ pointerEvents: 'none' }} />
+        <div className="absolute inset-0 flex items-center justify-center" style={{ pointerEvents: 'none' }}>
           <div className="text-white text-4xl sm:text-6xl font-bold opacity-30 transition-opacity duration-300">
             {project.title.charAt(0)}
           </div>
         </div>
         
         {/* Floating badge */}
-        <div className="absolute top-3 right-3 bg-white bg-opacity-20 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium">
+        <div className="absolute top-3 right-3 bg-white bg-opacity-20 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium" style={{ pointerEvents: 'none' }}>
           {project.category}
         </div>
         
         {/* Hover effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transition-opacity duration-300" style={{ pointerEvents: 'none' }} />
       </div>
       
       <div className="p-4 sm:p-6">
@@ -247,7 +247,7 @@ const ProjectsPage = () => {
               href={project.liveDemoLink}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg transition-all duration-200 text-sm font-medium shadow-md"
+              className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg transition-all duration-200 text-sm font-medium shadow-md cursor-pointer"
             >
               <ExternalLink className="w-4 h-4" />
               <span className="hidden sm:inline">Live Demo</span>
