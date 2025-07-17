@@ -297,7 +297,7 @@ const Resume = () => {
                   company="CodenCreative"
                   role="Full Stack Developer"
                   duration="Feb 2024 – Present"
-                  location="Remote"
+                  location="On-Site"
                   points={[
                     "Led frontend development for research applications with interactive data visualization, improving user satisfaction by 25%",
                     "Optimized e-commerce platform performance by 30% and boosted user engagement by 20% through code optimization",
@@ -309,7 +309,7 @@ const Resume = () => {
                   company="BlackWater Coffee Pvt. Ltd."
                   role="Full Stack Developer"
                   duration="Dec 2022 – Jan 2024"
-                  location="Hybrid"
+                  location="On-Site"
                   points={[
                     "Engineered high-performance POS system, reducing checkout times by 40% and improving operational efficiency",
                     "Developed advanced inventory management module, reducing stock discrepancies by 30%",
