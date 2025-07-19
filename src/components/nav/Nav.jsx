@@ -391,7 +391,8 @@ import { FaRegComments } from "react-icons/fa";
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#home");
   const [isVisible, setIsVisible] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  // eslint-disable-next-line
+  const [ isScrolling,setIsScrolling] = useState(false);
   const observerRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
 

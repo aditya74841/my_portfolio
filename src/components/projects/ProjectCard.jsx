@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, ExternalLink, Code, Eye, Star, Clock } from 'lucide-react';
+import {  Eye, Star, Clock } from 'lucide-react';
 import { TechStackBadges } from './Utility/TechStackBadges';
 import { ActionButtons } from './Utility/ActionButtons';
 

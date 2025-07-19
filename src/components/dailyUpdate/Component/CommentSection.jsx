@@ -1,5 +1,4 @@
 import React from 'react';
-import { Send, MessageSquare } from 'lucide-react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 

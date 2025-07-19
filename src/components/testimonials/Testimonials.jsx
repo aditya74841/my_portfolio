@@ -90,7 +90,7 @@ import SEO from "../../SEO";
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [ setActiveSlide] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, TrendingUp } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { ProgressBar } from './Utility/ProgressBar';
 import { TechStackBadges } from './Utility/TechStackBadges';
 

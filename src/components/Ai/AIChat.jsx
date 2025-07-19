@@ -155,7 +155,7 @@
 // export default AIChat;
 
 import React, { useState, useRef, useEffect } from "react";
-import { LoaderCircle, User, Bot, X, MessageCircle, Send } from "lucide-react";
+import { LoaderCircle, User, Bot, X,  Send } from "lucide-react";
 
 const AIChat = ({ embedded = false, onClose }) => {
   const [question, setQuestion] = useState("");

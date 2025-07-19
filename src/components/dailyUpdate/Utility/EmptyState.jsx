@@ -1,7 +1,7 @@
 
 // EmptyState.jsx
 import React from 'react';
-import { Calendar, Search } from 'lucide-react';
+import {  Search } from 'lucide-react';
 
 const EmptyState = ({ selectedCategory }) => (
   <div className="flex flex-col items-center justify-center py-16">

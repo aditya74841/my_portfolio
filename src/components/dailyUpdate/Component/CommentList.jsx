@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, User } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { formatTimeAgo } from '../Utility/timeUtils';
 
 const CommentList = ({ update, expandedComments, toggleComments }) => {

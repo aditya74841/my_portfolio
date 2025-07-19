@@ -90,7 +90,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaHeart, FaArrowUp, FaCode, FaServer } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaHeart,  FaCode, FaServer } from "react-icons/fa";
 import { FiInstagram, FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { BsTwitter } from "react-icons/bs";
 import { MdRocketLaunch } from "react-icons/md";
@@ -100,7 +100,7 @@ import axios from "axios";
 const Footer = () => {
   const [serverMessage, setServerMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  // const [ setShowScrollTop] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
@@ -133,25 +133,19 @@ const Footer = () => {
     }
 
     // Scroll to top button visibility
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
+    // const handleScroll = () => {
+    //   setShowScrollTop(window.scrollY > 300);
+    // };
 
-    window.addEventListener('scroll', handleScroll);
+    // window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      // window.removeEventListener('scroll', handleScroll);
       if (footer) {
         observer.unobserve(footer);
       }
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   const navigationLinks = [
     { href: "#home", label: "Home" },
