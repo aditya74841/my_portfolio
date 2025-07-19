@@ -40,8 +40,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background: var(--color-bg);
     color: var(--color-white);
-    line-height: 1.7;
-    background-image: url('../src/assets/bg-texture.png');
+    /* line-height: 1.7; */
+    /* background-image: url('../src/assets/bg-texture.png'); */
 }
 
 .container {
@@ -62,7 +62,7 @@ h1 {
 }
 
 section {
-    margin-top: 8rem;
+    /* margin-top: 8rem; */
     /* height: 100vh; */
 }
 
@@ -127,7 +127,7 @@ img {
     }
 
     section {
-        margin-top: 6rem;
+        /* margin-top: 6rem; */
     }
 
 }
@@ -144,3 +144,18 @@ img {
         margin-bottom: 2rem;
     }
 }
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
