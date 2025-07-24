@@ -76,7 +76,7 @@ import { useNavbar } from "../../contexts/NavbarContext";
 
 const FloatingChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { hideNavbarComponent, showNavbar } = useNavbar();
+  const {  showNavbar } = useNavbar();
 
   return (
     <>

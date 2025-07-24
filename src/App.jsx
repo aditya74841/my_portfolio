@@ -208,6 +208,7 @@ import ProjectsPage from "./components/projects/Projects";
 
 // Import the NavbarProvider
 import { NavbarProvider, useNavbar } from "./contexts/NavbarContext";
+import Analytics from "./components/Ai/Analytics";
 
 // Remove Nav from FullHome - let the parent handle it
 const FullHome = () => (
@@ -265,6 +266,7 @@ const AppContent = () => {
           <Route path="/blog" element={<Layout><Main /></Layout>} />
           <Route path="/cv" element={<Layout><Resume /></Layout>} />
           <Route path="/ai" element={<AIChat />} />
+          <Route path="/ai-analytics" element={<Analytics />} />
           <Route path="/category" element={<Layout><CategoryPage /></Layout>} />
           <Route path="/update" element={<Layout><UpdatePage /></Layout>} />
           <Route path="/daily-update" element={<Layout><DailyUpdate /></Layout>} />
