@@ -72,9 +72,11 @@
 import React, { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import AIChat from "./AIChat";
+import { useNavbar } from "../../contexts/NavbarContext";
 
 const FloatingChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { hideNavbarComponent, showNavbar } = useNavbar();
 
   return (
     <>
@@ -99,7 +101,9 @@ const FloatingChatButton = () => {
       {isOpen && (
         <AIChat
           embedded={false}
-          onClose={() => setIsOpen(false)}
+          onClose={() => {
+            showNavbar();
+            setIsOpen(false)}}
         />
       )}
     </>

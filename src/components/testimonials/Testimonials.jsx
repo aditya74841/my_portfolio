@@ -90,7 +90,8 @@ import SEO from "../../SEO";
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [ setActiveSlide] = useState(0);
+ // eslint-disable-next-line
+   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

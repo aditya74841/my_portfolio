@@ -43,7 +43,7 @@ const CTA = () => {
                 </span>
             </Link>
             
-            <Link 
+            {/* <Link 
                 to="/daily-update" 
                 className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-out"
             >
@@ -52,7 +52,7 @@ const CTA = () => {
                     <span className="text-lg">📱</span>
                 </span>
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-            </Link>
+            </Link> */}
         </div>
     );
 };

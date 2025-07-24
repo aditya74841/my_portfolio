@@ -1,163 +1,11 @@
 
-// import React, { useState, useRef} from "react";
-// import { LoaderCircle, User, Bot, X } from "lucide-react";
-
-// const AIChat = ({ embedded = false, onClose }) => {
-//   const [question, setQuestion] = useState("");
-//   const [response, setResponse] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState("");
-
-//   const modalRef = useRef(null);
-
-//   const askAI = async () => {
-//     if (!question.trim()) return;
-//     setLoading(true);
-//     setError("");
-//     setResponse("");
-
-//     try {
-//       const res = await fetch("https://portfolio-server-8zb7.onrender.com/ask", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ question }),
-//       });
-
-//       const data = await res.json();
-//       if (res.ok) {
-//         setResponse(data.answer);
-//       } else {
-//         setError(data.error || "Something went wrong.");
-//       }
-//     } catch (err) {
-//       setError("Could not connect to the assistant.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const genericQuestions = [
-//     "Tell me about yourself.",
-//     "What projects have you worked on?",
-//     "What makes you unique as a developer?",
-//     "How do you keep learning and improving?",
-//     "Can you explain your AI assistant project?",
-//   ];
-
-//   const linkify = (text) => {
-//     text = text.replace(
-//       /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-//       (_, label, url) =>
-//         `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">${label}</a>`
-//     );
-//     return text.replace(/(https?:\/\/[^\s<>"')\]]+)/g, (url) => {
-//       const cleanUrl = url.replace(/[.,)]*$/, "");
-//       return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">${cleanUrl}</a>`;
-//     });
-//   };
-
-//   return (
-//     <div
-//       ref={modalRef}
-//       className={`${
-//         embedded ? "" : "fixed bottom-0 right-0 z-50"
-//       } w-full max-w-md h-[80vh] bg-white rounded-t-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200`}
-//     >
-//       {/* Header */}
-//       <div className="flex items-center justify-between p-4 bg-indigo-600 text-white">
-//         <h2 className="text-lg font-semibold">💬 Ask My AI Assistant</h2>
-//         {!embedded && (
-//           <button onClick={onClose}>
-//             <X size={20} />
-//           </button>
-//         )}
-//       </div>
-
-//       {/* Scrollable chat area */}
-//       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-4">
-//         <p className="text-center text-gray-500 text-sm">
-//           Ask anything about my skills, journey or projects.
-//         </p>
-
-//         {error && (
-//           <div className="text-red-600 bg-red-100 px-4 py-2 rounded-md">
-//             {error}
-//           </div>
-//         )}
-
-//         {question && (
-//           <div className="flex items-start gap-2">
-//             <User className="text-indigo-500 mt-1" size={20} />
-//             <div className="bg-indigo-50 px-4 py-2 rounded-lg text-gray-800 max-w-[90%]">
-//               {question}
-//             </div>
-//           </div>
-//         )}
-
-//         {response && (
-//           <div className="flex items-start gap-2">
-//             <Bot className="text-green-600 mt-1" size={20} />
-//             <div
-//               className="whitespace-pre-wrap bg-gray-50 border border-gray-200 rounded-lg p-5 text-gray-800 text-base"
-//               dangerouslySetInnerHTML={{ __html: linkify(response) }}
-//             />
-//           </div>
-//         )}
-
-// { !loading && (
-//   <div className="text-sm text-gray-600 mt-4">
-//     <span className="font-semibold text-base text-indigo-700">💡 Try asking me one of these:</span>
-//     <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-//       {genericQuestions.map((q, idx) => (
-//         <div
-//           key={idx}
-//           onClick={() => {
-//             setQuestion(q);
-//             setResponse("");
-//             setTimeout(() => askAI(), 200);
-//           }}
-//           className="cursor-pointer bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg p-3 shadow-sm hover:shadow-md transition duration-200 ease-in-out flex items-start gap-2"
-//         >
-//           <span className="text-indigo-500 font-bold">➤</span>
-//           <span className="text-gray-800">{q}</span>
-//         </div>
-//       ))}
-//     </div>
-//   </div>
-// )}
-//       </div>
-
-//       {/* Fixed input */}
-//       <div className="p-4 border-t flex gap-2">
-//         <input
-//           className="flex-grow border border-gray-300 rounded-lg px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-//           type="text"
-//           placeholder="Ask me something..."
-//           value={question}
-//           onChange={(e) => setQuestion(e.target.value)}
-//           onKeyDown={(e) => e.key === "Enter" && askAI()}
-//           disabled={loading}
-//         />
-//         <button
-//           onClick={askAI}
-//           disabled={loading}
-//           className={`px-4 py-2 rounded-lg font-medium text-white transition ${
-//             loading ? "bg-indigo-300 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
-//           }`}
-//         >
-//           {loading ? <LoaderCircle className="animate-spin" size={20} /> : "Ask"}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AIChat;
 
 import React, { useState, useRef, useEffect } from "react";
 import { LoaderCircle, User, Bot, X,  Send } from "lucide-react";
+import { useNavbar } from "../../contexts/NavbarContext";
 
 const AIChat = ({ embedded = false, onClose }) => {
+  const { hideNavbarComponent, showNavbar } = useNavbar();
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -176,10 +24,39 @@ const AIChat = ({ embedded = false, onClose }) => {
     scrollToBottom();
   }, [chatHistory, response]);
 
+
+  
+  // ... rest of your existing state and logic
+
+  // Hide navbar when component mounts (if not embedded)
+  useEffect(() => {
+    if (!embedded) {
+      hideNavbarComponent();
+    }
+    
+    // Show navbar when component unmounts
+    return () => {
+      if (!embedded) {
+        showNavbar();
+      }
+    };
+  }, [embedded, hideNavbarComponent, showNavbar]);
+
+  // Update the onClose handler to show navbar
+  // const handleClose = () => {
+  //   showNavbar();
+  //   if (onClose) {
+  //     onClose();
+  //   }
+  // };
+
+
+
   // Handle click outside to close
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target) && !embedded) {
+        showNavbar();
         onClose();
       }
     };
@@ -460,3 +337,340 @@ const AIChat = ({ embedded = false, onClose }) => {
 };
 
 export default AIChat;
+
+
+// import React, { useState, useRef, useEffect } from "react";
+// import { LoaderCircle, User, Bot, X, Send } from "lucide-react";
+
+// const AIChat = ({ embedded = false, onClose }) => {
+//   const [question, setQuestion] = useState("");
+//   const [response, setResponse] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+//   const [isTyping, setIsTyping] = useState(false);
+//   const [chatHistory, setChatHistory] = useState([]);
+
+//   const modalRef = useRef(null);
+//   const messagesEndRef = useRef(null);
+//   const inputRef = useRef(null);
+
+//   const scrollToBottom = () => {
+//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+//   };
+
+//   useEffect(() => {
+//     scrollToBottom();
+//   }, [chatHistory, response]);
+
+//   // Handle click outside to close
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (modalRef.current && !modalRef.current.contains(event.target) && !embedded) {
+//         onClose();
+//       }
+//     };
+
+//     if (!embedded) {
+//       document.addEventListener('mousedown', handleClickOutside);
+//     }
+
+//     return () => {
+//       document.removeEventListener('mousedown', handleClickOutside);
+//     };
+//   }, [onClose, embedded]);
+
+//   // Handle viewport height changes (mobile keyboard)
+//   useEffect(() => {
+//     const handleResize = () => {
+//       // Force a small delay to handle keyboard appearance
+//       setTimeout(() => {
+//         if (inputRef.current) {
+//           inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+//         }
+//       }, 100);
+//     };
+
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   const askAI = async () => {
+//     if (!question.trim()) return;
+    
+//     const userMessage = { type: 'user', content: question, timestamp: Date.now() };
+//     setChatHistory(prev => [...prev, userMessage]);
+    
+//     setLoading(true);
+//     setIsTyping(true);
+//     setError("");
+//     setResponse("");
+
+//     try {
+//       const res = await fetch("https://portfolio-server-8zb7.onrender.com/ask", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ question }),
+//       });
+
+//       const data = await res.json();
+//       if (res.ok) {
+//         const aiMessage = { type: 'ai', content: data.answer, timestamp: Date.now() };
+//         setChatHistory(prev => [...prev, aiMessage]);
+//         setResponse(data.answer);
+//       } else {
+//         setError(data.error || "Something went wrong.");
+//       }
+//     } catch (err) {
+//       setError("Could not connect to the assistant.");
+//     } finally {
+//       setLoading(false);
+//       setIsTyping(false);
+//       setQuestion("");
+//     }
+//   };
+
+//   const genericQuestions = [
+//     "Tell me about your skills",
+//     "What projects have you built?",
+//     "How can I contact you?",
+//     "What's your experience?",
+//   ];
+
+//   const linkify = (text) => {
+//     text = text.replace(
+//       /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+//       (_, label, url) =>
+//         `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${label}</a>`
+//     );
+//     return text.replace(/(https?:\/\/[^\s<>"')\]]+)/g, (url) => {
+//       const cleanUrl = url.replace(/[.,)]*$/, "");
+//       return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${cleanUrl}</a>`;
+//     });
+//   };
+
+//   const handleQuestionClick = (q) => {
+//     setQuestion(q);
+//     setTimeout(() => askAI(), 100);
+//   };
+
+//   const handleInputFocus = () => {
+//     // Scroll input into view when focused (mobile)
+//     setTimeout(() => {
+//       if (inputRef.current) {
+//         inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//       }
+//     }, 300);
+//   };
+
+//   return (
+//     <>
+//       {/* Backdrop for mobile */}
+//       {!embedded && (
+//         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"></div>
+//       )}
+      
+//       <div
+//         ref={modalRef}
+//         className={`${
+//           embedded 
+//             ? "" 
+//             : "fixed bottom-4 right-4 z-40 max-md:fixed max-md:inset-4 max-md:top-16"
+//         } w-full max-w-md max-md:max-w-none h-[650px] max-md:h-[calc(100vh-5rem)] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 flex flex-col overflow-hidden transform transition-all duration-300 ease-in-out`}
+//         style={{
+//           background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)',
+//           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)',
+//         }}
+//       >
+//         {/* Header - Fixed at top */}
+//         <div className="flex-shrink-0 relative p-4 md:p-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white">
+//           <div className="absolute inset-0 bg-black/10"></div>
+//           <div className="relative flex items-center justify-between">
+//             <div className="flex items-center gap-3 md:gap-4">
+//               <div className="relative">
+//                 <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+//                   <Bot size={20} className="md:w-6 md:h-6 text-white" />
+//                 </div>
+//                 <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+//               </div>
+//               <div>
+//                 <h2 className="text-lg md:text-xl font-bold">AI Assistant</h2>
+//                 <p className="text-white/80 text-xs md:text-sm">Ask me about Aditya</p>
+//               </div>
+//             </div>
+            
+//             {!embedded && (
+//               <button
+//                 onClick={onClose}
+//                 className="w-8 h-8 md:w-10 md:h-10 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-200 flex items-center justify-center"
+//                 aria-label="Close chat"
+//               >
+//                 <X size={16} className="md:w-5 md:h-5" />
+//               </button>
+//             )}
+//           </div>
+//         </div>
+
+//         {/* Chat Messages - Scrollable middle section */}
+//         <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6 bg-gradient-to-b from-gray-50/50 to-white/50">
+//           {/* Welcome Message */}
+//           {chatHistory.length === 0 && (
+//             <div className="text-center py-4 md:py-8">
+//               <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+//                 <Bot size={28} className="md:w-9 md:h-9 text-white" />
+//               </div>
+//               <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
+//                 👋 Hello! I'm here to help
+//               </h3>
+//               <p className="text-gray-600 mb-4 md:mb-6 leading-relaxed text-sm md:text-base px-2">
+//                 I'm Aditya's AI assistant. Ask me anything about his skills, projects, or experience!
+//               </p>
+//             </div>
+//           )}
+
+//           {/* Chat History */}
+//           {chatHistory.map((message, index) => (
+//             <div
+//               key={index}
+//               className={`flex items-start gap-3 md:gap-4 ${
+//                 message.type === 'user' ? 'flex-row-reverse' : ''
+//               }`}
+//             >
+//               <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-md ${
+//                 message.type === 'user' 
+//                   ? 'bg-gradient-to-r from-blue-500 to-indigo-600' 
+//                   : 'bg-gradient-to-r from-emerald-500 to-green-600'
+//               }`}>
+//                 {message.type === 'user' ? (
+//                   <User size={14} className="md:w-[18px] md:h-[18px] text-white" />
+//                 ) : (
+//                   <Bot size={14} className="md:w-[18px] md:h-[18px] text-white" />
+//                 )}
+//               </div>
+              
+//               <div className={`max-w-[80%] md:max-w-[75%] ${
+//                 message.type === 'user' ? 'text-right' : 'text-left'
+//               }`}>
+//                 <div className={`px-3 py-2 md:px-5 md:py-3 rounded-2xl shadow-sm ${
+//                   message.type === 'user'
+//                     ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
+//                     : 'bg-white border border-gray-200 text-gray-800 shadow-md'
+//                 }`}>
+//                   {message.type === 'user' ? (
+//                     <p className="text-xs md:text-sm leading-relaxed">{message.content}</p>
+//                   ) : (
+//                     <div
+//                       className="text-xs md:text-sm leading-relaxed"
+//                       dangerouslySetInnerHTML={{ __html: linkify(message.content) }}
+//                     />
+//                   )}
+//                 </div>
+//                 <p className="text-xs text-gray-500 mt-1 md:mt-2 px-1">
+//                   {new Date(message.timestamp).toLocaleTimeString()}
+//                 </p>
+//               </div>
+//             </div>
+//           ))}
+
+//           {/* Typing Indicator */}
+//           {isTyping && (
+//             <div className="flex items-start gap-3 md:gap-4">
+//               <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center shadow-md">
+//                 <Bot size={14} className="md:w-[18px] md:h-[18px] text-white" />
+//               </div>
+//               <div className="bg-white border border-gray-200 px-3 py-2 md:px-5 md:py-3 rounded-2xl shadow-md">
+//                 <div className="flex gap-1.5">
+//                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+//                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+//                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300"></div>
+//                 </div>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* Error Message */}
+//           {error && (
+//             <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 md:px-5 md:py-3 rounded-2xl shadow-sm">
+//               <div className="flex items-center gap-3">
+//                 <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+//                 <span className="text-xs md:text-sm">{error}</span>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* Suggested Questions */}
+//           {chatHistory.length === 0 && !loading && (
+//             <div className="space-y-3 md:space-y-4">
+//               <p className="text-sm md:text-base font-semibold text-gray-700 text-center">
+//                 💡 Quick questions to get started:
+//               </p>
+//               <div className="grid grid-cols-1 gap-2 md:gap-3">
+//                 {genericQuestions.map((q, idx) => (
+//                   <button
+//                     key={idx}
+//                     onClick={() => handleQuestionClick(q)}
+//                     className="text-left bg-white hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 border border-gray-200 hover:border-indigo-300 rounded-xl p-3 md:p-4 transition-all duration-200 group shadow-sm hover:shadow-md"
+//                   >
+//                     <div className="flex items-center gap-3">
+//                       <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+//                         <span className="text-white text-xs md:text-sm">?</span>
+//                       </div>
+//                       <span className="text-gray-700 group-hover:text-indigo-700 font-medium text-xs md:text-sm">{q}</span>
+//                     </div>
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+//           )}
+
+//           <div ref={messagesEndRef} />
+//         </div>
+
+//         {/* Input Area - Fixed at bottom */}
+//         <div 
+//           ref={inputRef}
+//           className="flex-shrink-0 p-4 md:p-6 bg-white/90 backdrop-blur-sm border-t border-gray-200/50"
+//         >
+//           <div className="flex gap-2 md:gap-3">
+//             <div className="flex-1 relative">
+//               <input
+//                 className="w-full border-2 border-gray-200 focus:border-indigo-500 rounded-xl px-3 py-2 md:px-4 md:py-3 pr-10 md:pr-12 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200 bg-white/80 backdrop-blur-sm text-sm md:text-base"
+//                 type="text"
+//                 placeholder="Type your message..."
+//                 value={question}
+//                 onChange={(e) => setQuestion(e.target.value)}
+//                 onKeyDown={(e) => e.key === "Enter" && !loading && askAI()}
+//                 onFocus={handleInputFocus}
+//                 disabled={loading}
+//               />
+//               {question && (
+//                 <button
+//                   onClick={() => setQuestion("")}
+//                   className="absolute right-2 md:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+//                 >
+//                   <X size={14} className="md:w-4 md:h-4" />
+//                 </button>
+//               )}
+//             </div>
+//             <button
+//               onClick={askAI}
+//               disabled={loading || !question.trim()}
+//               className={`px-4 py-2 md:px-6 md:py-3 rounded-xl font-semibold text-white transition-all duration-200 flex items-center gap-2 text-sm md:text-base ${
+//                 loading || !question.trim()
+//                   ? "bg-gray-300 cursor-not-allowed"
+//                   : "bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:scale-105"
+//               }`}
+//             >
+//               {loading ? (
+//                 <LoaderCircle className="animate-spin w-4 h-4 md:w-5 md:h-5" />
+//               ) : (
+//                 <Send size={16} className="md:w-5 md:h-5" />
+//               )}
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default AIChat;
