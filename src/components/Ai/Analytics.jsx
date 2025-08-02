@@ -1263,7 +1263,7 @@ const Analytics = () => {
       setError('');
 
       // Try to fetch from API first
-      const response = await fetch('http://localhost:8080/api/v1/ai/analytics/detailed', {
+      const response = await fetch('https://portfolio-server-8zb7.onrender.com/api/v1/ai/analytics/detailed', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
