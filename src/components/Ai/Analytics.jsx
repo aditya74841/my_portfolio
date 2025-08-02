@@ -1070,9 +1070,7 @@
 
 
 
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import AnalyticsHeader from './components/AnalyticsHeader';
 import FilterSection from './components/FilterSection';
 import StatsCards from './components/StatsCard';
@@ -1084,76 +1082,7 @@ import ErrorDisplay from './components/ErrorDisplay';
 
 // Dummy data for fallback
 const DUMMY_DATA = [
-  {
-    _id: "6880b0bb498ef15e16450d6c",
-    title: "Tell me about your skills",
-    response: "I have experience in React, Node.js, Python, and various other technologies. I'm passionate about full-stack development and always learning new things.",
-    ipAddress: "103.191.40.90",
-    createdAt: "2025-01-20T09:51:55.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d6d",
-    title: "What projects have you built?",
-    response: "I've built several projects including e-commerce websites, AI chatbots, portfolio sites, and mobile applications using React Native.",
-    ipAddress: "192.168.1.100",
-    createdAt: "2025-01-20T14:30:22.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d6e",
-    title: "How can I contact you?",
-    response: "You can reach me through email at contact@example.com or connect with me on LinkedIn.",
-    ipAddress: "103.191.40.90",
-    createdAt: "2025-01-21T08:15:33.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d6f",
-    title: "What's your experience with React?",
-    response: "I have over 3 years of experience with React, building complex applications with hooks, context, and modern patterns.",
-    ipAddress: "10.0.0.5",
-    createdAt: "2025-01-21T11:45:12.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d70",
-    title: "Do you work with databases?",
-    response: "Yes, I work with both SQL databases like PostgreSQL and NoSQL databases like MongoDB.",
-    ipAddress: "192.168.1.100",
-    createdAt: "2025-01-21T16:20:45.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d71",
-    title: "Tell me about your skills",
-    response: "I specialize in modern web technologies including React, Vue.js, Node.js, and cloud platforms like AWS.",
-    ipAddress: "203.45.67.89",
-    createdAt: "2025-01-22T07:30:18.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d72",
-    title: "What projects have you built?",
-    response: "Some of my notable projects include a task management app, real-time chat application, and an AI-powered recommendation system.",
-    ipAddress: "103.191.40.90",
-    createdAt: "2025-01-22T13:15:27.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d73",
-    title: "Are you available for freelance work?",
-    response: "Yes, I'm available for freelance projects. Feel free to reach out to discuss your requirements.",
-    ipAddress: "172.16.0.1",
-    createdAt: "2025-01-22T19:40:55.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d74",
-    title: "What's your experience level?",
-    response: "I have 4+ years of professional experience in software development, working on both frontend and backend technologies.",
-    ipAddress: "10.0.0.5",
-    createdAt: "2025-01-23T06:25:33.046Z"
-  },
-  {
-    _id: "6880b0bb498ef15e16450d75",
-    title: "Do you know mobile development?",
-    response: "Yes, I have experience with React Native for cross-platform mobile development and have built several mobile apps.",
-    ipAddress: "192.168.1.100",
-    createdAt: "2025-01-23T12:50:41.046Z"
-  }
+  // ...your dummy data array...
 ];
 
 const Analytics = () => {
@@ -1177,60 +1106,8 @@ const Analytics = () => {
     questionTypes: []
   });
 
-  // Fetch analytics data
-  const fetchAnalytics = async () => {
-    try {
-      setLoading(true);
-      setError('');
-
-      // Try to fetch from API first
-      const response = await fetch('http://localhost:8080/api/v1/ai/analytics/detailed', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(filters)
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-
-      if (result.success && result.analytics) {
-        setData(result.analytics.recentQuestions || []);
-        setStats({
-          totalQuestions: result.analytics.totalQuestions || 0,
-          uniqueUsers: result.analytics.uniqueUsers || 0,
-          avgResponseLength: result.analytics.avgResponseLength || 0,
-          topQuestions: Array.isArray(result.analytics.topQuestions) ? result.analytics.topQuestions : [],
-          dailyStats: Array.isArray(result.analytics.dailyStats) ? result.analytics.dailyStats : [],
-          hourlyStats: Array.isArray(result.analytics.hourlyStats) ? result.analytics.hourlyStats : [],
-          ipStats: Array.isArray(result.analytics.ipStats) ? result.analytics.ipStats : [],
-          questionTypes: Array.isArray(result.analytics.questionTypes) ? result.analytics.questionTypes : []
-        });
-        setUseDummyData(false);
-      } else {
-        throw new Error('Invalid response format');
-      }
-
-    } catch (err) {
-      console.warn('API failed, using dummy data:', err.message);
-      // Fallback to dummy data
-      const filteredData = applyFiltersToData(DUMMY_DATA);
-      setData(filteredData);
-      calculateStats(filteredData);
-      setUseDummyData(true);
-      setError(''); // Clear error when using dummy data
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Apply filters to dummy data
-  const applyFiltersToData = (rawData) => {
+  const applyFiltersToData = useCallback((rawData) => {
     let filteredData = [...rawData];
 
     if (filters.search) {
@@ -1238,13 +1115,11 @@ const Analytics = () => {
         item.title.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
-
     if (filters.startDate) {
       filteredData = filteredData.filter(item =>
         new Date(item.createdAt) >= new Date(filters.startDate)
       );
     }
-
     if (filters.endDate) {
       const endDate = new Date(filters.endDate);
       endDate.setHours(23, 59, 59, 999); // End of day
@@ -1252,12 +1127,11 @@ const Analytics = () => {
         new Date(item.createdAt) <= endDate
       );
     }
-
     return filteredData;
-  };
+  }, [filters]);
 
   // Calculate statistics from dummy data
-  const calculateStats = (rawData) => {
+  const calculateStats = useCallback((rawData) => {
     if (!rawData.length) {
       setStats({
         totalQuestions: 0,
@@ -1283,7 +1157,7 @@ const Analytics = () => {
       questionCounts[question] = (questionCounts[question] || 0) + 1;
     });
     const topQuestions = Object.entries(questionCounts)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([, a], [, b]) => b - a)
       .slice(0, 10)
       .map(([question, count]) => ({ question, count }));
 
@@ -1317,7 +1191,7 @@ const Analytics = () => {
       ipCounts[item.ipAddress] = (ipCounts[item.ipAddress] || 0) + 1;
     });
     const ipStats = Object.entries(ipCounts)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([, a], [, b]) => b - a)
       .slice(0, 10)
       .map(([ip, count]) => ({ ip, count }));
 
@@ -1380,12 +1254,62 @@ const Analytics = () => {
       ipStats,
       questionTypes
     });
-  };
-  
+  }, []);
+
+  // Fetch analytics data, wrapped in useCallback
+  const fetchAnalytics = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError('');
+
+      // Try to fetch from API first
+      const response = await fetch('http://localhost:8080/api/v1/ai/analytics/detailed', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(filters)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.analytics) {
+        setData(result.analytics.recentQuestions || []);
+        setStats({
+          totalQuestions: result.analytics.totalQuestions || 0,
+          uniqueUsers: result.analytics.uniqueUsers || 0,
+          avgResponseLength: result.analytics.avgResponseLength || 0,
+          topQuestions: Array.isArray(result.analytics.topQuestions) ? result.analytics.topQuestions : [],
+          dailyStats: Array.isArray(result.analytics.dailyStats) ? result.analytics.dailyStats : [],
+          hourlyStats: Array.isArray(result.analytics.hourlyStats) ? result.analytics.hourlyStats : [],
+          ipStats: Array.isArray(result.analytics.ipStats) ? result.analytics.ipStats : [],
+          questionTypes: Array.isArray(result.analytics.questionTypes) ? result.analytics.questionTypes : []
+        });
+        setUseDummyData(false);
+      } else {
+        throw new Error('Invalid response format');
+      }
+    } catch (err) {
+      console.warn('API failed, using dummy data:', err.message);
+      // Fallback to dummy data
+      const filteredData = applyFiltersToData(DUMMY_DATA);
+      setData(filteredData);
+      calculateStats(filteredData);
+      setUseDummyData(true);
+      setError('');
+    } finally {
+      setLoading(false);
+    }
+  }, [filters, applyFiltersToData, calculateStats]);
 
   useEffect(() => {
     fetchAnalytics();
-  }, []);
+  }, [fetchAnalytics]);
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));
@@ -1406,7 +1330,6 @@ const Analytics = () => {
       data.map(row =>
         `"${row.title}","${row.response}","${row.ipAddress}","${row.createdAt}"`
       ).join("\n");
-
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -1428,21 +1351,16 @@ const Analytics = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 p-6">
       <div className="max-w-7xl mx-auto">
         <AnalyticsHeader useDummyData={useDummyData} />
-        
-        <FilterSection 
+        <FilterSection
           filters={filters}
           onFilterChange={handleFilterChange}
           onApplyFilters={applyFilters}
           onResetFilters={resetFilters}
           onExportData={exportData}
         />
-        
         <StatsCards stats={stats} />
-        
         <ChartsGrid stats={stats} />
-        
         <TopQuestionsTable stats={stats} />
-        
         <RecentQuestions data={data} />
       </div>
     </div>
