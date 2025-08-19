@@ -7,27 +7,36 @@ import { FiInstagram, FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { BsTwitter } from "react-icons/bs";
 import { MdRocketLaunch } from "react-icons/md";
 import SEO from "../../SEO";
-import axios from "axios";
+import useHealthCheck from "../../hooks/useHealthCheck";
 
 const Footer = () => {
-  const [serverMessage, setServerMessage] = useState("");
+  // const [serverMessage, setServerMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   // const [ setShowScrollTop] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
 
-  useEffect(() => {
-    const healthCheck = async () => {
-      try {
-        const response = await axios.get(
-          "https://portfolio-server-8zb7.onrender.com/health-check"
-        );
-        setServerMessage(response.data.message);
-      } catch (error) {
-        setServerMessage("Server offline");
-      }
-    };
-    healthCheck();
-  }, []);
+  // useEffect(() => {
+  //   const healthCheck = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://portfolio-server-8zb7.onrender.com/health-check"
+  //       );
+  //       setServerMessage(response.data.message);
+  //     } catch (error) {
+  //       setServerMessage("Server offline");
+  //     }
+  //   };
+  //   healthCheck();
+  // }, []);
+
+
+
+  const { 
+    serverMessage, 
+    // loading: healthLoading, 
+    // error: healthError 
+  } = useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(

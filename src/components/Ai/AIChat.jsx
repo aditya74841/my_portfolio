@@ -102,18 +102,28 @@ const AIChat = ({ embedded = false, onClose }) => {
     "What's your experience?",
   ];
 
+  // const linkify = (text) => {
+  //   text = text.replace(
+  //     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+  //     (_, label, url) =>
+  //       `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${label}</a>`
+  //   );
+  //   return text.replace(/(https?:\/\/[^\s<>"')\]]+)/g, (url) => {
+  //     const cleanUrl = url.replace(/[.,)]*$/, "");
+  //     return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${cleanUrl}</a>`;
+  //   });
+  // };
   const linkify = (text) => {
     text = text.replace(
       /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
       (_, label, url) =>
-        `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${label}</a>`
+        `<a href="${url}>${label}</a>`
     );
     return text.replace(/(https?:\/\/[^\s<>"')\]]+)/g, (url) => {
       const cleanUrl = url.replace(/[.,)]*$/, "");
-      return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700 underline font-medium">${cleanUrl}</a>`;
+      return `<a href="${cleanUrl}>${cleanUrl}</a>`;
     });
   };
-
   const handleQuestionClick = (q) => {
     setQuestion(q);
     setTimeout(() => askAI(), 100);

@@ -139,6 +139,7 @@ import ProjectsPage from "./components/projects/Projects";
 // Import the NavbarProvider
 import { NavbarProvider, useNavbar } from "./contexts/NavbarContext";
 import Analytics from "./components/Ai/Analytics";
+import useHealthCheck from "./hooks/useHealthCheck";
 
 // Remove Nav from FullHome - let the parent handle it
 const FullHome = () => (
@@ -168,9 +169,9 @@ const Layout = ({ children }) => {
 
 // Create a wrapper component to use the navbar context
 const AppContent = () => {
-  const { hideNavbar } = useNavbar();
+  // const { hideNavbar } = useNavbar();
 
-  console.log("The hide Navbar is ", hideNavbar);
+  useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
 
   return (
     <>
@@ -194,7 +195,7 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<Layout><FullHome /></Layout>} />
           <Route path="/blog" element={<Layout><Main /></Layout>} />
-          <Route path="/cv" element={<Layout><Resume /></Layout>} />
+          {/* <Route path="/cv" element={<Layout><Resume /></Layout>} /> */}
           <Route path="/ai" element={<AIChat />} />
           <Route path="/ai-analytics" element={<Analytics />} />
           <Route path="/category" element={<Layout><CategoryPage /></Layout>} />
@@ -204,6 +205,8 @@ const AppContent = () => {
           <Route path="/aditya-leetcode" element={<Layout><LeetCodeProfile /></Layout>} />
           {/* Remove Layout wrapper from projects route to hide navbar */}
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/cv" element={<Resume />} />
+
         </Routes>
         <FloatingChat />
       </Router>
