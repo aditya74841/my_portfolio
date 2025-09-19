@@ -12,7 +12,6 @@ import { BsArrowUpRight } from "react-icons/bs";
 import IMG1 from "../../assets/Ecommerce_Frontend.png";
 import IMG2 from "../../assets/google_keep.jpg";
 import IMG3 from "../../assets/to-do.png";
-import IMG7 from "../../assets/shortUrl.webp";
 import IMG8 from "../../assets/auditImage.png"
 import SEO from "../../SEO";
 
