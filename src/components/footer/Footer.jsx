@@ -86,7 +86,7 @@ const Footer = () => {
       color: "hover:text-gray-400"
     },
     {
-      href: "https://www.linkedin.com/in/aditya-ranjan-56331b1b7/",
+      href: "https://www.linkedin.com/in/iamadityaranjan/",
       icon: FaLinkedin,
       label: "LinkedIn",
       color: "hover:text-blue-400"
@@ -126,7 +126,7 @@ const Footer = () => {
   return (
     <>
       <SEO
-        title="Aditya Ranjan | Footer"
+        title="Aditya Ranjan"
         description="Explore the footer of Aditya Ranjan's website. Find links to social media profiles and the navigation menu."
         keywords="Aditya Ranjan, GitHub, Instagram, LinkedIn, Footer, Portfolio"
       />

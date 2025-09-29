@@ -80,15 +80,17 @@ const Header = () => {
                                     <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-200">
                                         <span className="text-cyan-400">Full Stack</span>{' '}
                                         <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                            Web Developer
+                                             Developer
                                         </span>
                                     </h2>
                                 </div>
                                 
                                 <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in delay-400">
-                                    With a Bachelor's Degree in Tech, experienced developer in
+                                    {/* With a Bachelor's Degree in Tech, experienced developer in
                                     creating web applications and applying current level of knowledge
-                                    and skills in producing quality work.
+                                    and skills in producing quality work. */}
+
+                                   A Full Stack Web Developer skilled in React, Node.js, Express, and MongoDB. I focus on building reliable, high-performance applications that deliver real-world impact.
                                 </p>
                                 
                                 <div className="animate-fade-in delay-500">

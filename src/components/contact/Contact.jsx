@@ -100,33 +100,81 @@ const Contact = () => {
   };
 
   // Send email
+  // const sendEmail = async (e) => {
+  //   e.preventDefault();
+    
+  //   if (!validateForm()) {
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+
+  //   try {
+  //     await emailjs.sendForm(
+  //       "service_65g5xo6",
+  //       "template_8k1ehud",
+  //       form.current,
+  //       "oBVM4ReuT4ojSBFhH"
+  //     );
+      
+  //     showNotification('success', 'Message sent successfully! I\'ll get back to you soon.');
+  //     setFormData({ name: '', email: '', message: '' });
+  //     form.current.reset();
+  //   } catch (error) {
+  //     console.error('EmailJS Error:', error);
+  //     showNotification('error', 'Failed to send message. Please try again or contact me directly.');
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const sendEmail = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
+  
+    if (!validateForm()) return;
+  
     setIsLoading(true);
-
+  
     try {
-      await emailjs.sendForm(
-        "service_65g5xo6",
-        "template_8k1ehud",
-        form.current,
-        "oBVM4ReuT4ojSBFhH"
+      // Fetch user's IP
+      const ipResponse = await fetch("https://api.ipify.org?format=json");
+      const ipData = await ipResponse.json();
+      const ip = ipData.ip;
+  
+      // Post data to backend
+      const response = await fetch(
+        "https://portfolio-server-8zb7.onrender.com/api/v1/contact",
+        // "http://localhost:8080/api/v1/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            name: formData.name, 
+            email: formData.email, 
+            description: formData.message,
+            ip
+          }),
+        }
       );
-      
-      showNotification('success', 'Message sent successfully! I\'ll get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
-      form.current.reset();
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        showNotification("success", "Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        showNotification("error", result.message || "Failed to send message. Please try again.");
+      }
     } catch (error) {
-      console.error('EmailJS Error:', error);
-      showNotification('error', 'Failed to send message. Please try again or contact me directly.');
+      console.error("Contact Form Error:", error);
+      showNotification("error", "Something went wrong. Please try again later.");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   const contactOptions = [
     {
