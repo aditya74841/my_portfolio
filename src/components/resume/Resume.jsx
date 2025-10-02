@@ -10,7 +10,6 @@ import {
   FaExternalLinkAlt,
   FaCode,
   FaTools,
-  FaBrain,
 } from "react-icons/fa";
 import CV from "../../assets/aditya_resume.pdf";
 import SEO from "../../SEO";

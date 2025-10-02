@@ -6,7 +6,6 @@ import { MdOutlineEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { BsWhatsapp, BsLinkedin } from "react-icons/bs";
 import { FaUser, FaEnvelope, FaCommentDots, FaPaperPlane, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { BiLoaderAlt } from "react-icons/bi";
-import emailjs from "emailjs-com";
 import SEO from "../../SEO";
 
 const Contact = () => {
