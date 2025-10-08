@@ -28,7 +28,7 @@ import ProjectsPage from "./components/projects/Projects";
 // Import the NavbarProvider
 import { NavbarProvider, useNavbar } from "./contexts/NavbarContext";
 import Analytics from "./components/Ai/Analytics";
-import useHealthCheck from "./hooks/useHealthCheck";
+// import useHealthCheck from "./hooks/useHealthCheck";
 
 // Remove Nav from FullHome - let the parent handle it
 const FullHome = () => (
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
 const AppContent = () => {
   // const { hideNavbar } = useNavbar();
 
-  useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
+  // useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
 
   return (
     <>
