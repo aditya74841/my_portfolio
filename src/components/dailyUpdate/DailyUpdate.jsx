@@ -8,6 +8,7 @@ import CategoryFilter from "./Component/CategoryFilter";
 import LoadingSpinner from "./Utility/LoadingSpinner";
 import EmptyState from "./Utility/EmptyState";
 import UpdatesFeed from "./Component/UpdateFeeds";
+import { SERVER_API_URL } from "../../constant";
 // import Header from "./components/Header";
 // import CategoryFilter from "./components/CategoryFilter";
 // import UpdatesFeed from "./components/UpdatesFeed";
@@ -18,8 +19,8 @@ import UpdatesFeed from "./Component/UpdateFeeds";
 // const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
 
 
-const API_BASE = `${process.envREACT_APP_SERVER_URL}/undate`;
-const CATEGORY_URL = `${process.envREACT_APP_SERVER_URL}/category`;
+const API_BASE = `${SERVER_API_URL}/update`;
+const CATEGORY_URL = `${SERVER_API_URL}/category`;
 
 // const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
 

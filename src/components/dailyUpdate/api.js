@@ -1,11 +1,12 @@
 import axios from "axios";
+import { SERVER_API_URL } from "../../constant";
 
 // const BASE_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
 
 // const BASE_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
 
 
-const BASE_URL = `${process.env.REACT_APP_SERVER_URL}/update`;
+const BASE_URL = `${SERVER_API_URL}/update`;
 // const CATEGORY_URL = `${process.env.REACT_APP_SERVER_URL}/category`;
 
 

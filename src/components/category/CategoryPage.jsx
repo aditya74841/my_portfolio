@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Edit2, Trash2, Plus, FolderOpen, Search } from "lucide-react";
+import { SERVER_API_URL } from "../../constant";
 
 const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
@@ -9,7 +10,7 @@ const CategoryPage = () => {
   const [editId, setEditId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const BASE_URL = `${process.env.REACT_APP_SERVER_URL}/category`;
+  const BASE_URL = `${SERVER_API_URL}/category`;
 
   // Fetch all categories
   const fetchCategories = useCallback(async () => {

@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { LoaderCircle, User, Bot, X, Send } from "lucide-react";
 import { useNavbar } from "../../contexts/NavbarContext";
+import { SERVER_URL } from "../../constant";
 
 const AIChat = ({ embedded = false, onClose }) => {
   const { hideNavbarComponent, showNavbar } = useNavbar();
@@ -77,7 +78,7 @@ const AIChat = ({ embedded = false, onClose }) => {
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify({ question }),
       // });
-      const res = await fetch(`${process.env.REACT_APP_ALL_SERVER_URL}/ask`, {
+      const res = await fetch(`${SERVER_URL}/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),

@@ -8,6 +8,7 @@ import { BsTwitter } from "react-icons/bs";
 import { MdRocketLaunch } from "react-icons/md";
 import SEO from "../../SEO";
 import useHealthCheck from "../../hooks/useHealthCheck";
+import { SERVER_URL } from "../../constant";
 
 const Footer = () => {
   // const [serverMessage, setServerMessage] = useState("");
@@ -42,7 +43,7 @@ const Footer = () => {
     serverMessage, 
     // loading: healthLoading, 
     // error: healthError 
-  } = useHealthCheck(`${process.env.REACT_APP_ALL_SERVER_URL}/health-check`);
+  } = useHealthCheck(`${SERVER_URL}/health-check`);
 
 
   useEffect(() => {

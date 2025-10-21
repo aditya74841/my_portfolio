@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { BiLoaderAlt } from "react-icons/bi";
 import SEO from "../../SEO";
+import { SERVER_API_URL } from "../../constant";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -147,7 +148,7 @@ const Contact = () => {
       // Post data to backend
       const response = await fetch(
         // "https://portfolio-server-8zb7.onrender.com/api/v1/contact",
-        `${process.env.REACT_APP_SERVER_URL}/contact`,
+        `${SERVER_API_URL}/contact`,
         // "http://localhost:8080/api/v1/contact",
         {
           method: "POST",
