@@ -10,6 +10,7 @@ import TopQuestionsTable from './components/TopQuestionsTable';
 import RecentQuestions from './components/RecentQuestion';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorDisplay from './components/ErrorDisplay';
+import { SERVER_URL } from '../../constant';
 
 // Dummy data for fallback
 const DUMMY_DATA = [
@@ -194,7 +195,9 @@ const Analytics = () => {
       setError('');
 
       // Try to fetch from API first
-      const response = await fetch('https://portfolio-server-8zb7.onrender.com/api/v1/ai/analytics/detailed', {
+      // const response = await fetch('https://portfolio-server-8zb7.onrender.com/api/v1/ai/analytics/detailed', {
+
+      const response = await fetch(`${SERVER_URL}/api/v1/ai/analytics/detailed`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
