@@ -31,11 +31,18 @@ const Footer = () => {
 
 
 
+  // const { 
+  //   serverMessage, 
+  //   // loading: healthLoading, 
+  //   // error: healthError 
+  // } = useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
+
+
   const { 
     serverMessage, 
     // loading: healthLoading, 
     // error: healthError 
-  } = useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
+  } = useHealthCheck(`${process.env.REACT_APP_ALL_SERVER_URL}/health-check`);
 
 
   useEffect(() => {

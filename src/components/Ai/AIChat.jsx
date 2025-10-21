@@ -72,12 +72,16 @@ const AIChat = ({ embedded = false, onClose }) => {
     setResponse("");
 
     try {
-      const res = await fetch("https://portfolio-server-8zb7.onrender.com/ask", {
+      // const res = await fetch("https://portfolio-server-8zb7.onrender.com/ask", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ question }),
+      // });
+      const res = await fetch(`${process.env.REACT_APP_ALL_SERVER_URL}/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
       });
-
       const data = await res.json();
       if (res.ok) {
         const aiMessage = { type: "ai", content: data.answer, timestamp: Date.now() };

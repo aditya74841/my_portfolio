@@ -1,16 +1,19 @@
 import axios from "axios";
 
-const BASE_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
-const CATEGORY_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/category`;
+// const BASE_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
+// const CATEGORY_URL = `https://portfolio-server-8zb7.onrender.com/api/v1/category`;
+
+const BASE_URL = `${process.env.REACT_APP_SERVER_URL}/update`;
+const CATEGORY_URL = `${process.env.REACT_APP_SERVER_URL}/category`;
 
 export const fetchUpdates = async () => {
   const res = await axios.get(`${BASE_URL}?page=1&limit=100`);
-  return res.data.data.docs || res.data.data||[];
+  return res.data.data.docs || res.data.data || [];
 };
 
 export const fetchCategories = async () => {
   const res = await axios.get(`${CATEGORY_URL}?page=1&limit=100`);
-  return res.data.data.docs || res.data.data ||[];
+  return res.data.data.docs || res.data.data || [];
 };
 
 export const createUpdate = async (form) => {

@@ -14,8 +14,15 @@ import UpdatesFeed from "./Component/UpdateFeeds";
 // import LoadingSpinner from "./components/LoadingSpinner";
 // import EmptyState from "./components/EmptyState";
 
-const API_BASE = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
-const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
+// const API_BASE = `https://portfolio-server-8zb7.onrender.com/api/v1/update`;
+// const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
+
+
+const API_BASE = `${process.envREACT_APP_SERVER_URL}/undate`;
+const CATEGORY_URL = `${process.envREACT_APP_SERVER_URL}/category`;
+
+// const CATEGORY_URL = "https://portfolio-server-8zb7.onrender.com/api/v1/category";
+
 
 const DailyUpdate = () => {
   const [updates, setUpdates] = useState([]);
