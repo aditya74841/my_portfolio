@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/header/Header";
@@ -24,10 +23,12 @@ import DailyUpdate from "./components/dailyUpdate/DailyUpdate";
 import GitHubProfile from "./components/about/GithubProfile";
 import LeetCodeProfile from "./components/about/LeetcodeProfile";
 import ProjectsPage from "./components/projects/Projects";
+import Clarity from "@microsoft/clarity";
 
 // Import the NavbarProvider
 import { NavbarProvider, useNavbar } from "./contexts/NavbarContext";
 import Analytics from "./components/Ai/Analytics";
+import Streak from "./components/streaks/Streak";
 // import useHealthCheck from "./hooks/useHealthCheck";
 
 // Remove Nav from FullHome - let the parent handle it
@@ -47,7 +48,7 @@ const FullHome = () => (
 // Create a layout wrapper that includes conditional navbar
 const Layout = ({ children }) => {
   const { hideNavbar } = useNavbar();
-  
+
   return (
     <>
       {!hideNavbar && <Nav />}
@@ -61,7 +62,11 @@ const AppContent = () => {
   // const { hideNavbar } = useNavbar();
 
   // useHealthCheck("https://portfolio-server-8zb7.onrender.com/health-check");
-
+  useEffect(() => {
+    // if (process.env.NODE_ENV === 'production') {
+    Clarity.init("txmys38344"); // Replace with your actual Clarity project ID
+    // }
+  }, []);
   return (
     <>
       <Toaster position="top-center" />
@@ -82,20 +87,69 @@ const AppContent = () => {
         </Helmet>
 
         <Routes>
-          <Route path="/" element={<Layout><FullHome /></Layout>} />
-          <Route path="/blog" element={<Layout><Main /></Layout>} />
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <FullHome />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <Layout>
+                <Main />
+              </Layout>
+            }
+          />
           {/* <Route path="/cv" element={<Layout><Resume /></Layout>} /> */}
           <Route path="/ai" element={<AIChat />} />
           <Route path="/ai-analytics" element={<Analytics />} />
-          <Route path="/category" element={<Layout><CategoryPage /></Layout>} />
-          <Route path="/update" element={<Layout><UpdatePage /></Layout>} />
-          <Route path="/daily-update" element={<Layout><DailyUpdate /></Layout>} />
-          <Route path="/aditya-github" element={<Layout><GitHubProfile /></Layout>} />
-          <Route path="/aditya-leetcode" element={<Layout><LeetCodeProfile /></Layout>} />
+          <Route
+            path="/category"
+            element={
+              <Layout>
+                <CategoryPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/update"
+            element={
+              <Layout>
+                <UpdatePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/daily-update"
+            element={
+              <Layout>
+                <DailyUpdate />
+              </Layout>
+            }
+          />
+          <Route
+            path="/aditya-github"
+            element={
+              <Layout>
+                <GitHubProfile />
+              </Layout>
+            }
+          />
+          <Route
+            path="/aditya-leetcode"
+            element={
+              <Layout>
+                <LeetCodeProfile />
+              </Layout>
+            }
+          />
           {/* Remove Layout wrapper from projects route to hide navbar */}
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/cv" element={<Resume />} />
-
+          <Route path="/streak" element={<Streak />} />
         </Routes>
         <FloatingChat />
       </Router>
